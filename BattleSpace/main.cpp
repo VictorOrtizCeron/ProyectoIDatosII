@@ -1,37 +1,36 @@
 #include <SFML/Graphics.hpp>
-
+#include <stdio.h>
 int main()
 {
-    // Create the main window
-    sf::RenderWindow app(sf::VideoMode(1280, 720), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile("MainShip.png"))
-        return EXIT_FAILURE;
-    sf::Sprite sprite(texture);
 
-	// Start the game loop
-    while (app.isOpen())
+    sf::Texture mainShiptexture;
+    if (!mainShiptexture.loadFromFile("MainShip.png"))
     {
-        // Process events
-        sf::Event event;
-        while (app.pollEvent(event))
-        {
-            // Close window : exit
-            if (event.type == sf::Event::Closed)
-                app.close();
-        }
 
-        // Clear screen
-        app.clear();
-
-        // Draw the sprite
-        app.draw(sprite);
-
-        // Update the window
-        app.display();
+        return 0;
     }
 
-    return EXIT_SUCCESS;
+
+    sf::Sprite mainShip;
+    mainShip.setTexture(mainShiptexture);
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.draw(mainShip);
+        window.display();
+    }
+
+
+    return 0;
 }
+
