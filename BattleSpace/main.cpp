@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
+// Proyecto 1 Datos 2
+// Fernando Fuchs 2020144908
+// Victor Ortiz 2020426044
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
