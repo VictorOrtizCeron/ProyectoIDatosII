@@ -41,12 +41,16 @@ sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
 }
 
-
-
-int main()
-{
+void StartMenu(){
     RenderWindow MENU(VideoMode(960,720) ,"Main Menu", Style::Default);
     MainMenu mainMenu(MENU.getSize().x, MENU.getSize().y);
+
+
+    RectangleShape background;
+    background.setSize(Vector2f(960,720));
+    Texture menuTexture;
+    menuTexture.loadFromFile("MainMenuBackground.jpg");
+    background.setTexture(&menuTexture);
 
     while(MENU.isOpen()){
 
@@ -76,10 +80,16 @@ int main()
 
         }
     MENU.clear();
+    MENU.draw(background);
     mainMenu.draw(MENU);
     MENU.display();
 
     }
+}
+
+int main()
+{
+    StartMenu();
 
     return 0;
 }
