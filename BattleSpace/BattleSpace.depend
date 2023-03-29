@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1679680608 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
+1680048039 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
 	<SFML/Graphics.hpp>
 	<stdio.h>
 	<iostream>
@@ -18,7 +18,7 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1679679521 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/MainMenu.cpp
+1679872142 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/MainMenu.cpp
 	"MainMenu.h"
 	<iostream>
 

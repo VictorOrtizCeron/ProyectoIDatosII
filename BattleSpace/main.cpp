@@ -9,9 +9,10 @@
 // Victor Ortiz 2020426044
 
 using namespace sf;
-void mainWindow(){
 
-sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
+void GameWindow(){
+
+sf::RenderWindow window(sf::VideoMode(1280, 720), "Ventana de Juego");
 
 
         sf::Texture mainShiptexture;
@@ -42,7 +43,7 @@ sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 }
 
 void StartMenu(){
-    RenderWindow MENU(VideoMode(960,720) ,"Main Menu", Style::Default);
+    RenderWindow MENU(VideoMode(960,720) ,"Main Menu", Style::Close);
     MainMenu mainMenu(MENU.getSize().x, MENU.getSize().y);
 
 
@@ -62,19 +63,35 @@ void StartMenu(){
                 }
             if(event.type == Event::KeyReleased ){
 
-                if(event.key.code ==  Keyboard::Up){
+                if(event.key.code ==  Keyboard::W){
                     mainMenu.moveUp();
                     break;
                     }
-                if(event.key.code ==  Keyboard::Down){
+                if(event.key.code ==  Keyboard::S){
                     mainMenu.moveDown();
                     break;
                     }
                 if(event.key.code == Keyboard::Return){
-                    mainWindow();
-                    int x = mainMenu.MainMenuPressed();
-                    std::cout<< x << std::endl;
-                    //funcionalidades de los botones para compenzar partidas
+
+
+                    int x = mainMenu.MainMenuPressed();//esto retorna el numero la opcion
+
+                    //aqui van las funcionalidades de los botones para compenzar partidas
+                    if(x == 0){
+                        GameWindow();
+                        }
+
+                    if(x == 1){
+                        std::cout<<"opciones"<< std::endl;
+                        }
+
+                    if(x == 2){
+                        std::cout<<"about"<< std::endl;
+                        }
+
+                    if(x == 3){
+                        MENU.close();
+                        }
                     }
                 }
 
