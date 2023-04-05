@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
-
+#include "Game.h"
 #include <iostream>
 #include "MainMenu.h"
 
@@ -12,7 +12,8 @@ using namespace sf;
 
 void GameWindow(){
 
-sf::RenderWindow window(sf::VideoMode(1280, 720), "Ventana de Juego");
+//crea la ventana del juego
+    sf::RenderWindow ventanajuego(sf::VideoMode(1280, 720), "Ventana de Juego");
 
 
         sf::Texture mainShiptexture;
@@ -26,18 +27,18 @@ sf::RenderWindow window(sf::VideoMode(1280, 720), "Ventana de Juego");
         sf::Sprite mainShip;
         mainShip.setTexture(mainShiptexture);
 
-        while (window.isOpen())
+        while (ventanajuego.isOpen())
         {
             sf::Event event;
-            while (window.pollEvent(event))
+            while (ventanajuego.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed)
-                    window.close();
+                    ventanajuego.close();
             }
 
-            window.clear();
-            window.draw(mainShip);
-            window.display();
+            ventanajuego.clear();
+            ventanajuego.draw(mainShip);
+            ventanajuego.display();
         }
 
 }
@@ -106,7 +107,13 @@ void StartMenu(){
 
 int main()
 {
-    StartMenu();
+    Game game;
+
+    //game functions
+    game.run();
+    //por ahora solo estamos abriendo el game window desde el main, la idea esa que se abra desde menu, esto es
+    // solo para testear funcionalidad
+    //StartMenu();
 
     return 0;
 }

@@ -14,11 +14,11 @@
 
 1679598495 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/game.h
 
-1679679796 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/MainMenu.h
+1679681205 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/MainMenu.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1679872142 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/MainMenu.cpp
+1679681205 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/MainMenu.cpp
 	"MainMenu.h"
 	<iostream>
 
