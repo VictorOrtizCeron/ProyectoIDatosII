@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "Game.h"
 #include <iostream>
+#include<time.h>
 #include "MainMenu.h"
 
 // Proyecto 1 Datos 2
@@ -107,6 +108,7 @@ void StartMenu(){
 
 int main()
 {
+    srand(time(static_cast<unsigned>(0)));
     Game game;
 
     //game functions

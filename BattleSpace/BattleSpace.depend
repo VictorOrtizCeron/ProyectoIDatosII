@@ -5,9 +5,13 @@
 	<iostream>
 	"MainMenu.h"
 
-1679526467 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/main.cpp
+1680874530 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/main.cpp
 	<SFML/Graphics.hpp>
 	<stdio.h>
+	"Game.h"
+	<iostream>
+	<time.h>
+	"MainMenu.h"
 
 1679598511 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/game.cpp
 	"game.h"
@@ -21,4 +25,42 @@
 1679681205 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/MainMenu.cpp
 	"MainMenu.h"
 	<iostream>
+
+1680876541 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/Game.cpp
+	"Game.h"
+
+1680909293 /home/fernando/Documentos/ProyectoIDatosII/BattleSpace/include/Game.h
+	"Player.h"
+	"Bullet.h"
+	"Enemy.h"
+	<map>
+
+1680750649 /home/fernando/Documentos/ProyectoIDatosII/BattleSpace/include/MainMenu.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1680750649 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/MainMenu.cpp
+	"MainMenu.h"
+	<iostream>
+
+1680915350 /home/fernando/Documentos/ProyectoIDatosII/BattleSpace/include/Player.h
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<iostream>
+
+1680849650 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/src/Player.cpp
+	"Player.h"
+
+1680845584 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/src/Bullet.cpp
+	"Bullet.h"
+
+1680845402 /home/fernando/Documentos/ProyectoIDatosII/BattleSpace/include/Bullet.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1680876541 /home/fernando/Documentos/ProyectoIDatosII/BattleSpace/include/Enemy.h
+	<SFML/Graphics.hpp>
+
+1680877190 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
+	"Enemy.h"
 
