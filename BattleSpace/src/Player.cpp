@@ -8,7 +8,7 @@ void Player::initVariables()
 }
 void Player::initTexture()
 {
-//funcion que llama la imagen del mainship
+    //funcion que llama la imagen del mainship
     if (!this->textura.loadFromFile("MainShip.png"))
     {
         std::cout<<"Error no se cargo la imagen"<<"\n";

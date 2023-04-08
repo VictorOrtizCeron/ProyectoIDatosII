@@ -80,22 +80,19 @@ void Game::updatePollEvents()
 void Game::updateInput()
 {
      //movimiento del main ship
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        this->player->move(-1.f,0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        this->player->move(1.f,0.f);
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        this->player->move(0.f,-1.f);
+        this->player->move(0.f,-3.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        this->player->move(0.f,1.f);
+        this->player->move(0.f,3.f);
 
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)&&this->player->canAttack())
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack())
     {
         this->bullets.push_back(new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
         this->player->getPos().y,
+        1.f,
         0.f,
-        -1.f,
         5.f
         )
         );
@@ -127,13 +124,13 @@ void Game::updateEnemies()
     this->spawnTimer += 0.5f;
     if(this->spawnTimer >=this->spawnTimerMax)
     {
-        this->enemies.push_back(new Enemy(rand()%this->window->getSize().x-20.f,-100.f);
+        //this->enemies.push_back(new Enemy(rand()%this->window->getSize().x-20.f,-100.f);
         this->spawnTimer = 0.f;
     }
     for (int i = 0; i<this->enemies.size(); ++i)
     {
-        this->enemies{i}->update();
-        if(this->enemies[i].get)
+        //this->enemies{i}->update();
+       // if(this->enemies[i].get)
     }
 
 }
