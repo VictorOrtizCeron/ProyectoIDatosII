@@ -80,7 +80,11 @@ void StartMenu(){
 
                     //aqui van las funcionalidades de los botones para compenzar partidas
                     if(x == 0){
-                        GameWindow();
+                        srand(time(static_cast<unsigned>(0)));
+                        Game game;
+
+                        //game functions
+                        game.run();
                         }
 
                     if(x == 1){
@@ -108,11 +112,13 @@ void StartMenu(){
 
 int main()
 {
+    //StartMenu();
     srand(time(static_cast<unsigned>(0)));
     Game game;
 
     //game functions
     game.run();
+
     //por ahora solo estamos abriendo el game window desde el main, la idea esa que se abra desde menu, esto es
     // solo para testear funcionalidad
     //StartMenu();

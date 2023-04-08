@@ -86,6 +86,7 @@ void Game::updateInput()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->player->move(0.f,3.f);
 
+    //thread
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack())
     {
@@ -105,11 +106,11 @@ void Game::updateBullets()
     {
         bullet->update();
 
-        //cambiar la orientacion de las balas
-        //bullet culling (top of screen)
-        if(bullet->getBounds().top + bullet->getBounds().height<0.f)
+        //Este condicional sirve para almacenar balas falladas en el bullet collector
+        if(bullet->getBounds().left > 1300)
         {
             //Elimina la bala
+            std::cout<< "bala pal bullet collector"<<std::endl;
             delete this->bullets.at(counter);
             this->bullets.erase(this->bullets.begin()+counter);
             --counter;

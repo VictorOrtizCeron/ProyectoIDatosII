@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1680928158 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
+1680993988 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
 	<SFML/Graphics.hpp>
 	<stdio.h>
 	"Game.h"
@@ -66,7 +66,7 @@
 1680877190 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
 	"Enemy.h"
 
-1680988695 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
+1680993815 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
 	"Game.h"
 
 1680928158 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
@@ -75,19 +75,19 @@
 	"Enemy.h"
 	<map>
 
-1680928158 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Player.h
+1680989959 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Player.h
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<iostream>
 
-1680928158 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Bullet.h
+1680990505 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Bullet.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
 1680928158 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Enemy.h
 	<SFML/Graphics.hpp>
 
-1680928158 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Bullet.cpp
+1680995691 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Bullet.cpp
 	"Bullet.h"
 
 1680928158 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
@@ -95,4 +95,13 @@
 
 1680933136 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Player.cpp
 	"Player.h"
+
+1680995935 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/BulletLinkedList.cpp
+	"BulletLinkedList.h"
+
+1680995691 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/BulletLinkedList.h
+	"bulletNode.h"
+
+1680996314 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/bulletNode.h
+	"Bullet.h"
 

@@ -1,4 +1,4 @@
-#ifndef BULLET_H
+#ifndef  BULLET_H
 #define BULLET_H
 #include<SFML/Graphics.hpp>
 #include<iostream>
