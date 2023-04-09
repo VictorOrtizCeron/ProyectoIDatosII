@@ -44,14 +44,18 @@
 		<Unit filename="Game.cpp" />
 		<Unit filename="MainMenu.cpp" />
 		<Unit filename="include/Bullet.h" />
+		<Unit filename="include/BulletLinkedList.h" />
 		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/MainMenu.h" />
 		<Unit filename="include/Player.h" />
+		<Unit filename="include/bulletNode.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Bullet.cpp" />
+		<Unit filename="src/BulletLinkedList.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/Player.cpp" />
+		<Unit filename="src/bulletNode.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

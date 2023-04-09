@@ -2,20 +2,21 @@
 #define BULLETLINKEDLIST_H
 
 #include "bulletNode.h"
+#include "Bullet.h"
 
 class BulletLinkedList
 {
     public:
         BulletLinkedList();
         virtual ~BulletLinkedList();
-        void addFirst();
+        void addFirst(Bullet bullet);
         void removeFirst();
-        int getSize();
+        int size;
 
     protected:
 
     private:
-        int size;
+
         bulletNode* head;
 
 

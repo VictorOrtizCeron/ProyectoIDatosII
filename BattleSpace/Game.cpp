@@ -17,6 +17,11 @@ void Game::initPlayer()
     this->player = new Player();
 }
 
+void Game::initCollector()
+{
+    this->Collector = new BulletLinkedList();
+}
+
 void Game::initEnemies()
 {
     this->spawnTimerMax = 50.f;
@@ -29,6 +34,7 @@ Game::Game()
     this->initTextures();
     this-> initPlayer();
     this->initEnemies();
+    this-> initCollector();
 }
 
 Game::~Game()
@@ -51,6 +57,7 @@ Game::~Game()
         delete i;
     }
 }
+
 
 //functions
 
@@ -102,6 +109,7 @@ void Game::updateInput()
 void Game::updateBullets()
 {
     unsigned counter = 0;
+
     for (auto *bullet : this->bullets)
     {
         bullet->update();
@@ -110,12 +118,15 @@ void Game::updateBullets()
         if(bullet->getBounds().left > 1300)
         {
             //Elimina la bala
-            std::cout<< "bala pal bullet collector"<<std::endl;
+
+            Collector->addFirst(*bullet);
+            printf("%d\n",Collector->size);
             delete this->bullets.at(counter);
             this->bullets.erase(this->bullets.begin()+counter);
             --counter;
 
         }
+
         ++counter;
     }
 }

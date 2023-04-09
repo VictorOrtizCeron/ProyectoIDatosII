@@ -4,8 +4,8 @@
 #include"Bullet.h"
 #include"Enemy.h"
 #include<map>
-
-
+#include "BulletLinkedList.h"
+#include <iostream>
 class Game
 {
     public:
@@ -24,6 +24,7 @@ class Game
     private:
         sf::RenderWindow* window;
         Player* player;
+        BulletLinkedList* Collector;
         float spawnTimer;
         float spawnTimerMax;
         std::vector<Enemy*>enemies;
@@ -34,6 +35,10 @@ class Game
         void initTextures();
         void initPlayer();
         void initEnemies();
+        void initCollector();
+
+
+
 };
 
 #endif // GAME_H

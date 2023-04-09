@@ -10,13 +10,13 @@ class bulletNode
         bulletNode();
         bulletNode(Bullet bala);
         virtual ~bulletNode();
-        bulletNode* getNext();
+        bulletNode* nextBullet;
+        Bullet bullet;
     protected:
 
 
-    private:
-        bulletNode* nextBullet;
-        Bullet bullet;
+
+
 };
 
 #endif // BULLETNODE_H
