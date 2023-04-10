@@ -17,6 +17,7 @@ class Player
         void updateAttack();
         void update();
         void render(sf::RenderTarget& target);
+        void SlowAttackCooldownMax(float increment);
 
     protected:
 

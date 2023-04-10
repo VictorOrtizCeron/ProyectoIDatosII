@@ -3,7 +3,7 @@
 void Player::initVariables()
 {
     this->movementSpeed = 1.f;
-    this->attackCooldownMax=10.f;
+    this->attackCooldownMax=15.f;
     this->attackCooldown=this->attackCooldownMax;
 }
 void Player::initTexture()
@@ -45,8 +45,33 @@ const sf::FloatRect Player::getBounds() const
 
 void Player::move(const float dirX, const float dirY)
 {
+
     this->imagen.move(this->movementSpeed*dirX,this->movementSpeed*dirY);
 }
+
+
+void Player::SlowAttackCooldownMax(float increment){
+
+    if(attackCooldownMax == 3.5 && increment>0){
+        this->attackCooldownMax = this->attackCooldownMax + increment;
+    }
+    if(attackCooldownMax == 20 && increment<0){
+        this->attackCooldownMax = this->attackCooldownMax + increment;
+    }
+    if(attackCooldownMax<20 && attackCooldownMax> 3.5){
+
+        this->attackCooldownMax = this->attackCooldownMax + increment;
+    }
+    else{
+        return;
+    }
+
+    std::cout<< attackCooldownMax<<std::endl;
+
+
+}
+
+
 
 const bool Player::canAttack()
 {

@@ -110,21 +110,33 @@ void Game::updateInput()
         this->player->move(0.f,-3.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->player->move(0.f,3.f);
+    //incrementar velocidad de disparo
+    //velocidad de disparo por default 10.f
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+        this->player->SlowAttackCooldownMax(0.5f);
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+        this->player->SlowAttackCooldownMax(-0.5f);
+
 
     //thread
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack()){
-        std::cout<<"Collector size: "<< Collector->size<<std::endl;
+
+
+        //Condicional que evalúa si se va a utilizar una bala de bullet collector
         if(Collector-> size > 0){
 
             Bullet* bulletPTR = Collector->head->bullet;
             this->Collector->removeFirst();
+
+            //reinicia los parámetros de las balas reutilizadas.
             bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
             this->player->getPos().y,
             1.f,0.f,5.f);
             std::cout<< bulletPTR<<std::endl;
             shotBullets->addFirst(bulletPTR);
-            //SI FUNCIONA, PERO HAY QUE RESETEAR LAS CONDICIONES DE INICIO DEL DISPAR QUE SE VEN ABAJO FACILONGO
+
         }
         else{
             Bullet *newBullet = new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
