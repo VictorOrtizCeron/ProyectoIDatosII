@@ -21,7 +21,21 @@ void Game::initCollector()
 {
     this->Collector = new BulletLinkedList();
 }
+void Game::initMagazine(int i){
 
+    this -> Magazine = new BulletLinkedList();
+    for(i=0 ; i<=150;i++){
+
+        Magazine -> addFirst(new Bullet());
+        std::cout<<Magazine -> size <<std::endl;
+    }
+
+}
+
+void Game::initshotBullets(){
+
+        this-> shotBullets = new BulletLinkedList();
+}
 void Game::initEnemies()
 {
     this->spawnTimerMax = 50.f;
@@ -35,6 +49,8 @@ Game::Game()
     this-> initPlayer();
     this->initEnemies();
     this-> initCollector();
+    this-> initshotBullets();
+    this-> initMagazine(150);
 }
 
 Game::~Game()
@@ -63,10 +79,14 @@ Game::~Game()
 
 void Game::run()
 {
+
     while(this->window->isOpen())
     {
         this->update();
         this->render();
+
+
+
 
     }
 
@@ -95,39 +115,41 @@ void Game::updateInput()
 
     //thread
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack())
-    {
-        this->bullets.push_back(new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack()){
+
+
+        shotBullets->addFirst(new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
         this->player->getPos().y,
-        1.f,
-        0.f,
-        5.f
-        )
-        );
+        1.f,0.f,5.f));
+        std::cout<<shotBullets -> size<<std::endl;
+
+        }
     }
-}
 void Game::updateBullets()
 {
-    unsigned counter = 0;
+    //printf("Entra al update");
+    bulletNode * current = this->shotBullets->head;
 
-    for (auto *bullet : this->bullets)
+
+    for (int i = 0; i != this->shotBullets->size ; i++)
     {
-        bullet->update();
+
 
         //Este condicional sirve para almacenar balas falladas en el bullet collector
-        if(bullet->getBounds().left > 1300)
+        if(current->bullet->getBounds().left > 1300)
         {
             //Elimina la bala
 
-            Collector->addFirst(*bullet);
-            printf("%d\n",Collector->size);
-            delete this->bullets.at(counter);
-            this->bullets.erase(this->bullets.begin()+counter);
-            --counter;
+            Collector->addFirst(current->bullet);
+            shotBullets->removeFirst();
+            //printf("%d\n",Collector->size);
+
+
 
         }
-
-        ++counter;
+        printf("si entra al updateBullets()");
+        current->bullet->update();
+        current = current->nextBullet;
     }
 }
 
@@ -153,16 +175,14 @@ void Game::update()
     this->updateInput();
     this->player->update();
     this->updateBullets();
-    this->updateEnemies();
+    //this->updateEnemies();
 }
 void Game::render()
 {
     this->window->clear();
     this->player->render(*this->window);
-    for (auto *bullet : this->bullets)
-    {
-        bullet->render(this->window);
-    }
+
+
     for (auto *enemy : this->enemies)
     {
         enemy->render(this->window);

@@ -9,15 +9,16 @@ class BulletLinkedList
     public:
         BulletLinkedList();
         virtual ~BulletLinkedList();
-        void addFirst(Bullet bullet);
+        void addFirst(Bullet *bullet);
         void removeFirst();
         int size;
+        bulletNode* head;
 
     protected:
 
     private:
 
-        bulletNode* head;
+
 
 
 };

@@ -8,10 +8,10 @@ class bulletNode
 {
     public:
         bulletNode();
-        bulletNode(Bullet bala);
+        bulletNode(Bullet *bala);
         virtual ~bulletNode();
         bulletNode* nextBullet;
-        Bullet bullet;
+        Bullet *bullet;
     protected:
 
 

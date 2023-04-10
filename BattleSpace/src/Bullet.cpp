@@ -23,6 +23,7 @@ const sf::FloatRect Bullet::getBounds() const
 }
 void Bullet::update()
 {
+    printf("si entra al update");
     this->shape.move(this->movementSpeed*this->direction);
 }
 void Bullet::render(sf::RenderTarget* target)

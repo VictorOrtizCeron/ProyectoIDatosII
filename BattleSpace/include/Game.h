@@ -24,7 +24,9 @@ class Game
     private:
         sf::RenderWindow* window;
         Player* player;
-        BulletLinkedList* Collector;
+        BulletLinkedList* Collector;//lista de balas que no impactaron enemigos
+        BulletLinkedList* Magazine;//Lista enlazada de balas
+        BulletLinkedList* shotBullets; //Lista de balas disparadas
         float spawnTimer;
         float spawnTimerMax;
         std::vector<Enemy*>enemies;
@@ -36,8 +38,8 @@ class Game
         void initPlayer();
         void initEnemies();
         void initCollector();
-
-
+        void initMagazine(int i);
+        void initshotBullets();
 
 };
 
