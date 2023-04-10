@@ -16,6 +16,7 @@ class Bullet
         void update();
         void render(sf::RenderTarget* target);
         sf::Sprite shape;
+        void resetParams(sf::Texture* texture, float pos_x, float pos_y, float dir_x, float dir_y, float movement_speed);
 
     protected:
 

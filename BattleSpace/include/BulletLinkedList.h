@@ -11,6 +11,7 @@ class BulletLinkedList
         virtual ~BulletLinkedList();
         void addFirst(Bullet *bullet);
         void removeFirst();
+        Bullet * removeBullet(Bullet * bulletToRemove);
         int size;
         bulletNode* head;
         void drawAll(sf::RenderTarget& target);

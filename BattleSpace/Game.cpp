@@ -36,6 +36,7 @@ void Game::initshotBullets(){
 
         this-> shotBullets = new BulletLinkedList();
 }
+
 void Game::initEnemies()
 {
     this->spawnTimerMax = 50.f;
@@ -113,23 +114,34 @@ void Game::updateInput()
     //thread
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack()){
+        std::cout<<"Collector size: "<< Collector->size<<std::endl;
+        if(Collector-> size > 0){
 
-        Bullet *newBullet = new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
-        this->player->getPos().y,
-        1.f,0.f,5.f);
-
-        std::cout<<newBullet<<std::endl;
-        this->shotBullets->addFirst(newBullet);
-        shotBullets->printList(this->shotBullets->head);
-        std::cout<<shotBullets->size<<std::endl;
-
+            Bullet* bulletPTR = Collector->head->bullet;
+            this->Collector->removeFirst();
+            bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
+            this->player->getPos().y,
+            1.f,0.f,5.f);
+            std::cout<< bulletPTR<<std::endl;
+            shotBullets->addFirst(bulletPTR);
+            //SI FUNCIONA, PERO HAY QUE RESETEAR LAS CONDICIONES DE INICIO DEL DISPAR QUE SE VEN ABAJO FACILONGO
         }
+        else{
+            Bullet *newBullet = new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
+            this->player->getPos().y,
+            1.f,0.f,5.f);
+            shotBullets->addFirst(newBullet);
+        }
+
+
+
     }
+}
 
 void Game::updateBullets(){
 
     bulletNode *current = this->shotBullets->head;
-        if(current != nullptr){
+    if(current != nullptr){
         while (current != nullptr) {
 
             // Move the projectile sprite
@@ -138,13 +150,14 @@ void Game::updateBullets(){
 
             // Check if projectile is offscreen and remove it if it is
             if (current->bullet->getBounds().left > 1300) {
-                //meter en lista collector
+
+                Bullet* bulletPTR = shotBullets->removeBullet(current->bullet);
+                Collector->addFirst(bulletPTR);
             }
 
             current = current->nextBullet;
-            }
         }
-
+    }
 }
 
 void Game::updateEnemies()

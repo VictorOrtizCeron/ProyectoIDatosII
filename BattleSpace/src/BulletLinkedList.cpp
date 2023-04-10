@@ -55,8 +55,36 @@ void BulletLinkedList:: printList(bulletNode *head){
     }
 }
 
+//este metodo no borra el puntero, solo lo saca de shotBullets
+Bullet* BulletLinkedList:: removeBullet(Bullet* bulletToRemove){
 
+    bulletNode* current = this->head;
+    bulletNode* previous = nullptr;
 
+    while (current != nullptr) {
+        if (current->bullet == bulletToRemove) {
+
+            // Found the node to remove
+            if (previous == nullptr) {
+
+                // Removing the head node
+                this->head = current->nextBullet;
+                size--;
+
+                return current->bullet;
+            } else {
+                previous->nextBullet = current->nextBullet;
+                size--;
+                return current->bullet;
+            }
+
+        }
+
+        // Move to next node
+        previous = current;
+        current = current->nextBullet;
+    }
+}
 
 void BulletLinkedList::drawAll(sf::RenderTarget& target) {
         bulletNode* current = this->head;
