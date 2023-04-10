@@ -6,6 +6,7 @@
 #include<map>
 #include "BulletLinkedList.h"
 #include <iostream>
+#include <string>
 class Game
 {
     public:
@@ -18,11 +19,14 @@ class Game
         void updateEnemies();
         void update();
         void render();
+        void updateShootingSpeedText();
 
     protected:
 
     private:
         sf::RenderWindow* window;
+        sf::Text shootingSpeedText;
+        sf::Font font;
         Player* player;
         BulletLinkedList* Collector;//lista de balas que no impactaron enemigos
         BulletLinkedList* Magazine;//Lista enlazada de balas
@@ -40,7 +44,8 @@ class Game
         void initCollector();
         void initMagazine(int i);
         void initshotBullets();
-
+        void initShootingSpeedText();
+        void initFont();
 };
 
 #endif // GAME_H

@@ -71,7 +71,9 @@ void Player::SlowAttackCooldownMax(float increment){
 
 }
 
-
+float Player::getCooldown(){
+    return this->attackCooldownMax;
+}
 
 const bool Player::canAttack()
 {

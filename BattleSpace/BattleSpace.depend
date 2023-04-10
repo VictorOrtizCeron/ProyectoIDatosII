@@ -69,15 +69,16 @@
 1681153283 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
 	"Game.h"
 
-1681112851 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
+1681155577 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
 	"Player.h"
 	"Bullet.h"
 	"Enemy.h"
 	<map>
 	"BulletLinkedList.h"
 	<iostream>
+	<string>
 
-1681153023 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Player.h
+1681155577 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Player.h
 	<SFML/Graphics.hpp>
 	<SFML/System.hpp>
 	<iostream>
@@ -95,7 +96,7 @@
 1681105995 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
 	"Enemy.h"
 
-1681153395 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Player.cpp
+1681155577 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Player.cpp
 	"Player.h"
 
 1681119392 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/BulletLinkedList.cpp

@@ -37,6 +37,22 @@ void Game::initshotBullets(){
         this-> shotBullets = new BulletLinkedList();
 }
 
+void Game:: initShootingSpeedText(){
+
+    this->shootingSpeedText.setFont(this->font);
+    this->shootingSpeedText.setString("Shooting Speed");
+    this->shootingSpeedText.setCharacterSize(24);
+    this->shootingSpeedText.setFillColor(sf::Color::White);
+    this->shootingSpeedText.setPosition(100, 650);
+    this->window->draw(this->shootingSpeedText);
+}
+void Game:: initFont(){
+
+    if (!font.loadFromFile("RobotoMono-VariableFont_wght.ttf")) {
+        std::cout<<"fallo la carga de font"<<std::endl;
+    }
+
+}
 void Game::initEnemies()
 {
     this->spawnTimerMax = 50.f;
@@ -52,6 +68,8 @@ Game::Game()
     this-> initCollector();
     this-> initshotBullets();
     this-> initMagazine(0);
+    this->initFont();
+    this->initShootingSpeedText();
 }
 
 Game::~Game()
@@ -110,7 +128,7 @@ void Game::updateInput()
         this->player->move(0.f,-3.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         this->player->move(0.f,3.f);
-    //incrementar velocidad de disparo
+    //Control de velocidad de disparo
     //velocidad de disparo por default 10.f
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::K))
         this->player->SlowAttackCooldownMax(0.5f);
@@ -187,6 +205,13 @@ void Game::updateEnemies()
     }
 
 }
+void Game::updateShootingSpeedText(){
+
+    std::string message = "Shooting Speed: " + std::to_string(this->player->getCooldown());
+
+    this->shootingSpeedText.setString(message);
+
+}
 
 void Game::update()
 {
@@ -194,7 +219,7 @@ void Game::update()
     this->updateInput();
     this->player->update();
     this->updateBullets();
-
+    this->updateShootingSpeedText();
     //this->updateEnemies();
 }
 void Game::render()
@@ -204,6 +229,7 @@ void Game::render()
 
 
     this->shotBullets->drawAll(*this->window);
-
+    this->window->draw(this->shootingSpeedText);
     this->window->display();
+
 }
