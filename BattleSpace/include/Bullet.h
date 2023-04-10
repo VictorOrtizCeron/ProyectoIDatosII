@@ -15,11 +15,12 @@ class Bullet
 
         void update();
         void render(sf::RenderTarget* target);
+        sf::Sprite shape;
 
     protected:
 
     private:
-      sf::Sprite shape;
+
       sf::Vector2f direction;
       float movementSpeed;
 };

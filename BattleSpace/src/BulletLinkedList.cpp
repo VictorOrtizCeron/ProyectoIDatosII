@@ -1,5 +1,5 @@
 #include "BulletLinkedList.h"
-
+#include <iostream>
 BulletLinkedList::BulletLinkedList()
     {
         head = nullptr;
@@ -9,9 +9,11 @@ BulletLinkedList::BulletLinkedList()
 
 void BulletLinkedList::addFirst(Bullet *bullet){
 
+        //printf("%x",bullet);
         bulletNode* newNode = new bulletNode(bullet);
         if(head == nullptr){
-            this->head == newNode;
+            this->head = newNode;
+
 
         }
         else{
@@ -21,6 +23,7 @@ void BulletLinkedList::addFirst(Bullet *bullet){
 
 
         }
+
         size++;
 
     }
@@ -40,6 +43,29 @@ void BulletLinkedList:: removeFirst(){
         size--;
     }
 }
+
+
+void BulletLinkedList:: printList(bulletNode *head){
+    bulletNode *current = head;
+    std::cout<<"Resultado PrintList: "<<std::endl;
+    while(current != nullptr){
+
+        std::cout<<current->bullet<<std::endl;
+        current = current->nextBullet;
+    }
+}
+
+
+
+
+void BulletLinkedList::drawAll(sf::RenderTarget& target) {
+        bulletNode* current = this->head;
+        while (current != nullptr) {
+
+            target.draw(current->bullet->shape);
+            current = current->nextBullet;
+        }
+    }
 
 BulletLinkedList::~BulletLinkedList()
     {

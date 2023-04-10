@@ -13,7 +13,8 @@ class BulletLinkedList
         void removeFirst();
         int size;
         bulletNode* head;
-
+        void drawAll(sf::RenderTarget& target);
+        void printList(bulletNode * head);
     protected:
 
     private:

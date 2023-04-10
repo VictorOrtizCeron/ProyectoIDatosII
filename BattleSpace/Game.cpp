@@ -24,10 +24,10 @@ void Game::initCollector()
 void Game::initMagazine(int i){
 
     this -> Magazine = new BulletLinkedList();
-    for(i=0 ; i<=150;i++){
+    for(int j =0 ; j<=i;j++){
 
         Magazine -> addFirst(new Bullet());
-        std::cout<<Magazine -> size <<std::endl;
+
     }
 
 }
@@ -50,7 +50,7 @@ Game::Game()
     this->initEnemies();
     this-> initCollector();
     this-> initshotBullets();
-    this-> initMagazine(150);
+    this-> initMagazine(0);
 }
 
 Game::~Game()
@@ -85,9 +85,6 @@ void Game::run()
         this->update();
         this->render();
 
-
-
-
     }
 
 }
@@ -117,40 +114,37 @@ void Game::updateInput()
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack()){
 
-
-        shotBullets->addFirst(new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
+        Bullet *newBullet = new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
         this->player->getPos().y,
-        1.f,0.f,5.f));
-        std::cout<<shotBullets -> size<<std::endl;
+        1.f,0.f,5.f);
+
+        std::cout<<newBullet<<std::endl;
+        this->shotBullets->addFirst(newBullet);
+        shotBullets->printList(this->shotBullets->head);
+        std::cout<<shotBullets->size<<std::endl;
 
         }
     }
-void Game::updateBullets()
-{
-    //printf("Entra al update");
-    bulletNode * current = this->shotBullets->head;
 
+void Game::updateBullets(){
 
-    for (int i = 0; i != this->shotBullets->size ; i++)
-    {
+    bulletNode *current = this->shotBullets->head;
+        if(current != nullptr){
+        while (current != nullptr) {
 
+            // Move the projectile sprite
 
-        //Este condicional sirve para almacenar balas falladas en el bullet collector
-        if(current->bullet->getBounds().left > 1300)
-        {
-            //Elimina la bala
+            current->bullet->update();
 
-            Collector->addFirst(current->bullet);
-            shotBullets->removeFirst();
-            //printf("%d\n",Collector->size);
+            // Check if projectile is offscreen and remove it if it is
+            if (current->bullet->getBounds().left > 1300) {
+                //meter en lista collector
+            }
 
-
-
+            current = current->nextBullet;
+            }
         }
-        printf("si entra al updateBullets()");
-        current->bullet->update();
-        current = current->nextBullet;
-    }
+
 }
 
 void Game::updateEnemies()
@@ -175,6 +169,7 @@ void Game::update()
     this->updateInput();
     this->player->update();
     this->updateBullets();
+
     //this->updateEnemies();
 }
 void Game::render()
@@ -183,9 +178,7 @@ void Game::render()
     this->player->render(*this->window);
 
 
-    for (auto *enemy : this->enemies)
-    {
-        enemy->render(this->window);
-    }
+    this->shotBullets->drawAll(*this->window);
+
     this->window->display();
 }

@@ -38,10 +38,7 @@ Enemy::~Enemy()
     //dtor
 }
 
-const sf::FloatRect getBounds() const
-{
-    return
-}
+
 
 void Enemy::update()
 {
