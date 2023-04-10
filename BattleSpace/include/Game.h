@@ -7,6 +7,8 @@
 #include "BulletLinkedList.h"
 #include <iostream>
 #include <string>
+
+#define Max_inGame 4
 class Game
 {
     public:
@@ -19,16 +21,18 @@ class Game
         void updateEnemies();
         void update();
         void render();
-        void updateShootingSpeedText();
+        void updateText();
+        void renderText();
 
     protected:
 
     private:
         sf::RenderWindow* window;
-        sf::Text shootingSpeedText;
+        sf::Text text[Max_inGame];
         sf::Font font;
         Player* player;
-        BulletLinkedList* Collector;//lista de balas que no impactaron enemigos
+        BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
+        BulletLinkedList* shootingCollector;//lista de balas recogidas en ronda anterior que se van a disparar
         BulletLinkedList* Magazine;//Lista enlazada de balas
         BulletLinkedList* shotBullets; //Lista de balas disparadas
         float spawnTimer;
@@ -41,10 +45,11 @@ class Game
         void initTextures();
         void initPlayer();
         void initEnemies();
-        void initCollector();
+        void initGatheringCollector();
+        void initShootingCollector();
         void initMagazine(int i);
         void initshotBullets();
-        void initShootingSpeedText();
+        void initText();
         void initFont();
 };
 

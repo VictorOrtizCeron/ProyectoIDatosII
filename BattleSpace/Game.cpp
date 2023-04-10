@@ -17,14 +17,18 @@ void Game::initPlayer()
     this->player = new Player();
 }
 
-void Game::initCollector()
+void Game::initGatheringCollector()
 {
-    this->Collector = new BulletLinkedList();
+    this->gatheringCollector = new BulletLinkedList();
+}
+void Game:: initShootingCollector(){
+
+    this-> shootingCollector = new BulletLinkedList();
 }
 void Game::initMagazine(int i){
 
     this -> Magazine = new BulletLinkedList();
-    for(int j =0 ; j<=i;j++){
+    for(int j =0 ; j<i;j++){
 
         Magazine -> addFirst(new Bullet());
 
@@ -37,14 +41,20 @@ void Game::initshotBullets(){
         this-> shotBullets = new BulletLinkedList();
 }
 
-void Game:: initShootingSpeedText(){
+void Game:: initText(){
 
-    this->shootingSpeedText.setFont(this->font);
-    this->shootingSpeedText.setString("Shooting Speed");
-    this->shootingSpeedText.setCharacterSize(24);
-    this->shootingSpeedText.setFillColor(sf::Color::White);
-    this->shootingSpeedText.setPosition(100, 650);
-    this->window->draw(this->shootingSpeedText);
+    this->text[0].setFont(this->font);
+    this->text[0].setString("Shooting Speed");
+    this->text[0].setCharacterSize(20);
+    this->text[0].setFillColor(sf::Color::White);
+    this->text[0].setPosition(100, 650);
+
+    this->text[1].setFont(this->font);
+    this->text[1].setString("Ammunition:");
+    this->text[1].setCharacterSize(20);
+    this->text[1].setFillColor(sf::Color::White);
+    this->text[1].setPosition(500, 650);
+
 }
 void Game:: initFont(){
 
@@ -61,15 +71,16 @@ void Game::initEnemies()
 
 Game::Game()
 {
-    this-> initWindow();
+    this->initWindow();
     this->initTextures();
-    this-> initPlayer();
+    this->initPlayer();
     this->initEnemies();
-    this-> initCollector();
-    this-> initshotBullets();
-    this-> initMagazine(0);
+    this->initGatheringCollector();
+    this->initShootingCollector();
+    this->initshotBullets();
+    this->initMagazine(150);
     this->initFont();
-    this->initShootingSpeedText();
+    this->initText();
 }
 
 Game::~Game()
@@ -92,7 +103,6 @@ Game::~Game()
         delete i;
     }
 }
-
 
 //functions
 
@@ -143,10 +153,10 @@ void Game::updateInput()
 
 
         //Condicional que evalúa si se va a utilizar una bala de bullet collector
-        if(Collector-> size > 0){
+        if(shootingCollector-> size > 0){
 
-            Bullet* bulletPTR = Collector->head->bullet;
-            this->Collector->removeFirst();
+            Bullet* bulletPTR = shootingCollector->head->bullet;
+            this->shootingCollector->removeFirst();
 
             //reinicia los parámetros de las balas reutilizadas.
             bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
@@ -157,10 +167,14 @@ void Game::updateInput()
 
         }
         else{
-            Bullet *newBullet = new Bullet(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
+            Bullet* bulletPTR = Magazine->head->bullet;
+            this->Magazine->removeFirst();
+            bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
             this->player->getPos().y,
             1.f,0.f,5.f);
-            shotBullets->addFirst(newBullet);
+
+            shotBullets->addFirst(bulletPTR);
+            std::cout<<Magazine->size<<std::endl;
         }
 
 
@@ -182,7 +196,7 @@ void Game::updateBullets(){
             if (current->bullet->getBounds().left > 1300) {
 
                 Bullet* bulletPTR = shotBullets->removeBullet(current->bullet);
-                Collector->addFirst(bulletPTR);
+                gatheringCollector->addFirst(bulletPTR);
             }
 
             current = current->nextBullet;
@@ -205,21 +219,32 @@ void Game::updateEnemies()
     }
 
 }
-void Game::updateShootingSpeedText(){
+void Game::updateText(){
 
-    std::string message = "Shooting Speed: " + std::to_string(this->player->getCooldown());
+    std::string shootingSpeed = "Shooting Speed: " + std::to_string(this->player->getCooldown());
 
-    this->shootingSpeedText.setString(message);
+    this->text[0].setString(shootingSpeed);
+
+    std::string Ammo = "Ammunition: " + std::to_string(this->Magazine->size);
+
+    this->text[1].setString(Ammo);
 
 }
 
+void Game::renderText(){
+
+    for (int i = 0; i< 4; i++){
+        this->window->draw(text[i]);
+    }
+
+}
 void Game::update()
 {
     this->updatePollEvents();
     this->updateInput();
     this->player->update();
     this->updateBullets();
-    this->updateShootingSpeedText();
+    this->updateText();
     //this->updateEnemies();
 }
 void Game::render()
@@ -229,7 +254,7 @@ void Game::render()
 
 
     this->shotBullets->drawAll(*this->window);
-    this->window->draw(this->shootingSpeedText);
+    this->renderText();
     this->window->display();
 
 }
