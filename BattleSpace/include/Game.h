@@ -9,6 +9,7 @@
 #include <string>
 
 #define Max_inGame 4
+
 class Game
 {
     public:

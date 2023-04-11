@@ -11,6 +11,8 @@ void Game::initTextures()
 {
     this->textures["Bullet"] = new sf::Texture();
     this->textures["Bullet"]->loadFromFile("misil.png");
+    this->textures["GreenShip"] = new sf::Texture();
+    this->textures["GreenShip"]->loadFromFile("GreenShip.png");
 }
 void Game::initPlayer()
 {
@@ -63,8 +65,7 @@ void Game:: initFont(){
     }
 
 }
-void Game::initEnemies()
-{
+void Game::initEnemies(){
     this->spawnTimerMax = 50.f;
     this->spawnTimer = this->spawnTimerMax;
 }
@@ -149,7 +150,7 @@ void Game::updateInput()
 
     //thread
     //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)&&this->player->canAttack()){
+    if(this->player->canAttack()){
 
 
         //Condicional que evalúa si se va a utilizar una bala de bullet collector
@@ -167,14 +168,22 @@ void Game::updateInput()
 
         }
         else{
-            Bullet* bulletPTR = Magazine->head->bullet;
-            this->Magazine->removeFirst();
-            bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
-            this->player->getPos().y,
-            1.f,0.f,5.f);
+            if (Magazine->size==0){
 
-            shotBullets->addFirst(bulletPTR);
-            std::cout<<Magazine->size<<std::endl;
+                std::cout<<"no ammo"<<std::endl;
+
+            }
+            else{
+                Bullet* bulletPTR = Magazine->head->bullet;
+                this->Magazine->removeFirst();
+                bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
+                this->player->getPos().y,
+                1.f,0.f,5.f);
+
+                shotBullets->addFirst(bulletPTR);
+                std::cout<<Magazine->size<<std::endl;
+
+            }
         }
 
 

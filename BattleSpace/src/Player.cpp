@@ -49,7 +49,6 @@ void Player::move(const float dirX, const float dirY)
     this->imagen.move(this->movementSpeed*dirX,this->movementSpeed*dirY);
 }
 
-
 void Player::SlowAttackCooldownMax(float increment){
 
     if(attackCooldownMax == 3.5 && increment>0){
