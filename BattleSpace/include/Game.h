@@ -31,6 +31,7 @@ class Game
         sf::RenderWindow* window;
         sf::Text text[Max_inGame];
         sf::Font font;
+        Enemy* enemy;
         Player* player;
         BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
         BulletLinkedList* shootingCollector;//lista de balas recogidas en ronda anterior que se van a disparar

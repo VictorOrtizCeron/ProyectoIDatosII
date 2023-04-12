@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "Game.h"
 #include <iostream>
-#include<time.h>
+#include <time.h>
 #include "MainMenu.h"
 
 // Proyecto 1 Datos 2

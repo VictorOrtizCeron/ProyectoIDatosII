@@ -50,12 +50,16 @@
 		<Unit filename="include/MainMenu.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/bulletNode.h" />
+		<Unit filename="include/enemyLinkedList.h" />
+		<Unit filename="include/enemyNode.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Bullet.cpp" />
 		<Unit filename="src/BulletLinkedList.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/bulletNode.cpp" />
+		<Unit filename="src/enemyLinkedList.cpp" />
+		<Unit filename="src/enemyNode.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

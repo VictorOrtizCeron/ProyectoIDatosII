@@ -2,7 +2,7 @@
 #define ENEMY_H
 #include<SFML/Graphics.hpp>
 
-
+#include <iostream>
 class Enemy
 {
     public:
@@ -10,14 +10,15 @@ class Enemy
         virtual ~Enemy();
         const sf::FloatRect getBounds() const;
         void update();
-        void render(sf::RenderTarget* target);
+        void render(sf::RenderTarget& target);
+        sf::Sprite enemySprite;
+
 
     protected:
 
     private:
-        //sf::Sprite senemy;
-        //sf::Texture tenemy;
-        sf::CircleShape shape;
+
+        sf::Texture enemyTexture;
         int type;
         int hp;
         int hpMax;
@@ -25,8 +26,10 @@ class Enemy
         int points;
         void initShape();
         void initVariables();
-        //void initSprite();
-        //void initTexture();
+        void initSprite();
+        void initTexture();
+        float spawnTimer;
+        float spawnTimerMax;
 };
 
 #endif // ENEMY_H

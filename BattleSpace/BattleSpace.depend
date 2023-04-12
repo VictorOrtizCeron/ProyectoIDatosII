@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1681100627 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
+1681312672 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
 	<SFML/Graphics.hpp>
 	<stdio.h>
 	"Game.h"
@@ -66,10 +66,10 @@
 1680877190 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
 	"Enemy.h"
 
-1681176038 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
+1681334835 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
 	"Game.h"
 
-1681176243 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
+1681314034 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
 	"Player.h"
 	"Bullet.h"
 	"Enemy.h"
@@ -87,16 +87,17 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1681100627 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Enemy.h
+1681336156 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Enemy.h
 	<SFML/Graphics.hpp>
+	<iostream>
 
 1681151860 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Bullet.cpp
 	"Bullet.h"
 
-1681176048 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
+1681314121 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
 	"Enemy.h"
 
-1681175050 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Player.cpp
+1681179950 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Player.cpp
 	"Player.h"
 
 1681119392 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/BulletLinkedList.cpp
@@ -116,10 +117,13 @@
 1681159102 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/enemyLinkedList.cpp
 	"enemyLinkedList.h"
 
-1681159102 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyLinkedList.h
+1681335501 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyLinkedList.h
+	"enemyNode.h"
+	"Enemy.h"
 
-1681159138 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/enemyNode.cpp
+1681335160 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/enemyNode.cpp
 	"enemyNode.h"
 
-1681159138 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyNode.h
+1681335160 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyNode.h
+	"Enemy.h"
 

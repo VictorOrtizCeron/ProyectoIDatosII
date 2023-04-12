@@ -17,6 +17,7 @@ void Game::initTextures()
 void Game::initPlayer()
 {
     this->player = new Player();
+    this->enemy = new Enemy(20.f,20.f);
 }
 
 void Game::initGatheringCollector()
@@ -66,6 +67,7 @@ void Game:: initFont(){
 
 }
 void Game::initEnemies(){
+
     this->spawnTimerMax = 50.f;
     this->spawnTimer = this->spawnTimerMax;
 }
@@ -82,6 +84,7 @@ Game::Game()
     this->initMagazine(150);
     this->initFont();
     this->initText();
+    this->initEnemies();
 }
 
 Game::~Game()
@@ -218,13 +221,12 @@ void Game::updateEnemies()
     this->spawnTimer += 0.5f;
     if(this->spawnTimer >=this->spawnTimerMax)
     {
-        //this->enemies.push_back(new Enemy(rand()%this->window->getSize().x-20.f,-100.f);
+        //meter enemigo en enemyRenderList
         this->spawnTimer = 0.f;
     }
     for (int i = 0; i<this->enemies.size(); ++i)
     {
-        //this->enemies{i}->update();
-       // if(this->enemies[i].get)
+        //update Enenmy Render list a huevo
     }
 
 }
@@ -261,7 +263,7 @@ void Game::render()
     this->window->clear();
     this->player->render(*this->window);
 
-
+    this->enemy->render(*this->window);
     this->shotBullets->drawAll(*this->window);
     this->renderText();
     this->window->display();

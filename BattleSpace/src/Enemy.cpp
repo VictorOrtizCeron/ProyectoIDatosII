@@ -8,22 +8,27 @@ void Enemy::initVariables()
         this->hp = 0;
         this->damage = 1;
         this->points = 5;
+
+}
+//codigo para cambiar los "shapes" por la imagen de la nave rival
+void Enemy::initTexture(){
+
+    if (!this->enemyTexture.loadFromFile("GreenShip.png")){
+            std::cout<<"Error no se cargo la imagen"<<std::endl;
+        }
 }
 
-//codigo para cambiar los "shapes" por la imagen de la nave rival
-/*void Enemy::initTexture()
-{
-    this->tenemy.loadFromFile("RedShip.png");
-}
 void Enemy::initSprite()
 {
-    this->senemy.setTexture(this->tenemy);
-}*/
+    this->enemySprite.setTexture(this->enemyTexture);
+}
 Enemy::Enemy(float pos_x, float pos_y)
 {
 
     this->initVariables();
-    this->shape.setPosition(pos_x,pos_y);
+    this->initTexture();
+    this->initSprite();
+    this->enemySprite.setPosition(pos_x,pos_y);
 }
 
 Enemy::~Enemy()
@@ -32,13 +37,12 @@ Enemy::~Enemy()
 }
 
 
-
 void Enemy::update()
 {
 
 }
 
-void Enemy::render(sf::RenderTarget* target)
+void Enemy::render(sf::RenderTarget& target)
 {
-    target->draw(this->shape);
+    target.draw(this->enemySprite);
 }

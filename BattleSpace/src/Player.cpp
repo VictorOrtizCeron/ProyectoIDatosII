@@ -54,10 +54,10 @@ void Player::SlowAttackCooldownMax(float increment){
     if(attackCooldownMax == 3.5 && increment>0){
         this->attackCooldownMax = this->attackCooldownMax + increment;
     }
-    if(attackCooldownMax == 20 && increment<0){
+    if(attackCooldownMax == 25 && increment<0){
         this->attackCooldownMax = this->attackCooldownMax + increment;
     }
-    if(attackCooldownMax<20 && attackCooldownMax> 3.5){
+    if(attackCooldownMax<25 && attackCooldownMax> 3.5){
 
         this->attackCooldownMax = this->attackCooldownMax + increment;
     }
