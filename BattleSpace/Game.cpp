@@ -233,10 +233,16 @@ void Game::updateEnemies()
     this->spawnTimer += 0.5f;
     if(this->spawnTimer >=this->spawnTimerMax)
     {
+        if(this->EnemyMagazine->head == nullptr){
 
-        EnemyRenderList->addFirst(EnemyMagazine->removeFirst());
+            std::cout<<"no more enemies in enemy magazine"<<std::endl;
+        }
+        else{
 
-        this->spawnTimer = 0.f;
+            EnemyRenderList->addFirst(EnemyMagazine->removeFirst());
+
+            this->spawnTimer = 0.f;
+        }
     }
     while(current != nullptr)
     {

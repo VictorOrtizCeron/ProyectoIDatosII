@@ -13,7 +13,7 @@ void Enemy::initVariables()
 //codigo para cambiar los "shapes" por la imagen de la nave rival
 void Enemy::initTexture(){
 
-    if (!this->enemyTexture.loadFromFile("GreenShip.png")){
+    if (!this->enemyTexture.loadFromFile("RedShip.png")){
             std::cout<<"Error no se cargo la imagen"<<std::endl;
         }
 }
