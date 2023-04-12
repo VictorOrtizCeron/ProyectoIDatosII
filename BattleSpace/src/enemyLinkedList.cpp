@@ -57,7 +57,26 @@ Enemy* enemyLinkedList::removeEnemy(Enemy* EnemyToRemove){
 
 }
 
-void enemyLinkedList::drawAll(sf::RenderTarget& target) {
+
+Enemy* enemyLinkedList::removeFirst(){
+
+    if(this->head == nullptr){
+        return nullptr;
+
+    }
+
+    else{
+
+        enemyNode *Temp  = head;
+        head = head->nextEnemy;
+
+        return Temp->enemy;
+        size--;
+    }
+
+}
+
+void enemyLinkedList::drawAllEnemies(sf::RenderTarget& target) {
         enemyNode* current = this->head;
         while (current != nullptr) {
 

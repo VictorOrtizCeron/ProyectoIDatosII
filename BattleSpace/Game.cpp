@@ -66,6 +66,21 @@ void Game:: initFont(){
     }
 
 }
+
+void Game:: initEnemyMagazine(){
+
+    this->EnemyMagazine = new enemyLinkedList();
+
+    for(int i =0; i<7 ; i++){
+
+        this->EnemyMagazine->addFirst(new Enemy(1100,rand()%690));
+
+    }
+}
+void Game::initEnemyRenderList(){
+    this-> EnemyRenderList = new enemyLinkedList;
+
+}
 void Game::initEnemies(){
 
     this->spawnTimerMax = 50.f;
@@ -85,6 +100,8 @@ Game::Game()
     this->initFont();
     this->initText();
     this->initEnemies();
+    this->initEnemyMagazine();
+    this->initEnemyRenderList();
 }
 
 Game::~Game()
@@ -97,15 +114,9 @@ Game::~Game()
     }
 
     //Borra las balas del juego
-    for (auto *i : this->bullets)
-    {
-        delete i;
-    }
+
     //Borra los enemigos del juego
-    for (auto *i : this->enemies)
-    {
-        delete i;
-    }
+
 }
 
 //functions
@@ -218,15 +229,19 @@ void Game::updateBullets(){
 
 void Game::updateEnemies()
 {
+    enemyNode* current = this->EnemyRenderList->head;
     this->spawnTimer += 0.5f;
     if(this->spawnTimer >=this->spawnTimerMax)
     {
-        //meter enemigo en enemyRenderList
+
+        EnemyRenderList->addFirst(EnemyMagazine->removeFirst());
+
         this->spawnTimer = 0.f;
     }
-    for (int i = 0; i<this->enemies.size(); ++i)
+    while(current != nullptr)
     {
-        //update Enenmy Render list a huevo
+        current->enemy->update();
+        current = current->nextEnemy;
     }
 
 }
@@ -256,15 +271,15 @@ void Game::update()
     this->player->update();
     this->updateBullets();
     this->updateText();
-    //this->updateEnemies();
+    this->updateEnemies();
 }
 void Game::render()
 {
     this->window->clear();
     this->player->render(*this->window);
 
-    this->enemy->render(*this->window);
     this->shotBullets->drawAll(*this->window);
+    this->EnemyRenderList->drawAllEnemies(*this->window);
     this->renderText();
     this->window->display();
 

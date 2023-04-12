@@ -13,8 +13,11 @@ class enemyLinkedList
         Enemy * removeEnemy(Enemy * EnemyToRemove);
         int size;
         enemyNode* head;
-        void drawAll(sf::RenderTarget& target);
+        void drawAllEnemies(sf::RenderTarget& target);
         void printList(enemyNode * head);
+        Enemy* removeFirst();
+
+
     protected:
 
     private:

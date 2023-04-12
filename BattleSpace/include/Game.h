@@ -7,7 +7,7 @@
 #include "BulletLinkedList.h"
 #include <iostream>
 #include <string>
-
+#include "enemyLinkedList.h"
 #define Max_inGame 4
 
 class Game
@@ -39,7 +39,9 @@ class Game
         BulletLinkedList* shotBullets; //Lista de balas disparadas
         float spawnTimer;
         float spawnTimerMax;
-        std::vector<Enemy*>enemies;
+        enemyLinkedList* EnemyMagazine;
+        enemyLinkedList* EnemyRenderList;
+        enemyLinkedList* EnemyGatherer;
 
         std::map <std::string, sf::Texture*>textures;
         std::vector<Bullet*> bullets;
@@ -53,6 +55,10 @@ class Game
         void initshotBullets();
         void initText();
         void initFont();
+        void initEnemyMagazine();
+        void initEnemyRenderList();
+        void initEnemyGatherer();
+
 };
 
 #endif // GAME_H
