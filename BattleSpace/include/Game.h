@@ -31,6 +31,7 @@ class Game
         sf::RenderWindow* window;
         sf::Text text[Max_inGame];
         sf::Font font;
+        int waveCounter;
         Enemy* enemy;
         Player* player;
         BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
@@ -39,16 +40,19 @@ class Game
         BulletLinkedList* shotBullets; //Lista de balas disparadas
         float spawnTimer;
         float spawnTimerMax;
-        enemyLinkedList* EnemyMagazine;
+        float nextWaveTimer;
+        float nextWaveTimerMax;
+        bool waitNextWave;
         enemyLinkedList* EnemyRenderList;
         enemyLinkedList* EnemyGatherer;
 
+        enemyLinkedList* EnemyWaves[5];
         std::map <std::string, sf::Texture*>textures;
         std::vector<Bullet*> bullets;
         void initWindow();
         void initTextures();
         void initPlayer();
-        void initEnemies();
+        void initTimers();
         void initGatheringCollector();
         void initShootingCollector();
         void initMagazine(int i);
@@ -58,6 +62,7 @@ class Game
         void initEnemyMagazine();
         void initEnemyRenderList();
         void initEnemyGatherer();
+        void initEnemyWaves();
 
 };
 

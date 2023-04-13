@@ -58,6 +58,12 @@ void Game:: initText(){
     this->text[1].setFillColor(sf::Color::White);
     this->text[1].setPosition(500, 650);
 
+    this->text[2].setFont(this->font);
+    this->text[2].setString("Wave: ");
+    this->text[2].setCharacterSize(20);
+    this->text[2].setFillColor(sf::Color::White);
+    this->text[2].setPosition(700, 650);
+
 }
 void Game:: initFont(){
 
@@ -67,30 +73,47 @@ void Game:: initFont(){
 
 }
 
-void Game:: initEnemyMagazine(){
 
-    this->EnemyMagazine = new enemyLinkedList();
 
-    for(int i =0; i<7 ; i++){
+void Game:: initEnemyWaves(){
+    this->waveCounter = 0;
 
-        if(i<4){
-            this->EnemyMagazine->addFirst(new Enemy(1400,rand()%690,1));
+    for (int i = 0; i<5; i++){
+
+
+        enemyLinkedList* Wave = new enemyLinkedList();
+
+        for(int j =0; j<7 ; j++){
+
+            if(j<4){
+                Wave->addFirst(new Enemy(1400,rand()%690,1));
+            }
+            else{
+
+                Wave->addFirst(new Enemy(1400,rand()%690,0));
+            }
+
         }
-        else{
-
-            this->EnemyMagazine->addFirst(new Enemy(1400,rand()%690,0));
-        }
+        this->EnemyWaves[i]= Wave;
 
     }
+    std::cout<<this->EnemyWaves<<std::endl;
+
 }
+
+
 void Game::initEnemyRenderList(){
     this-> EnemyRenderList = new enemyLinkedList;
 
 }
-void Game::initEnemies(){
+void Game::initTimers(){
 
     this->spawnTimerMax = 75.f;
     this->spawnTimer = this->spawnTimerMax;
+    this->nextWaveTimer = 0.f;
+    this->nextWaveTimerMax = 200.f;
+    this->waitNextWave = true;
+
 }
 
 Game::Game()
@@ -98,16 +121,18 @@ Game::Game()
     this->initWindow();
     this->initTextures();
     this->initPlayer();
-    this->initEnemies();
+    this->initTimers();
     this->initGatheringCollector();
     this->initShootingCollector();
     this->initshotBullets();
     this->initMagazine(150);
     this->initFont();
     this->initText();
-    this->initEnemies();
-    this->initEnemyMagazine();
+    this->initTimers();
+
     this->initEnemyRenderList();
+    this->initEnemyWaves();
+    this->initTimers();
 }
 
 Game::~Game()
@@ -235,33 +260,63 @@ void Game::updateBullets(){
 
 void Game::updateEnemies()
 {
+    if(waveCounter>4){
+
+        this->initEnemyWaves();
+
+    }
+
+    this->nextWaveTimer += 0.5f;
+
+    if(nextWaveTimer >= nextWaveTimerMax){
+
+        waitNextWave = false;
+
+    }
+    else{
+
+
+        waitNextWave = true;
+    }
+
+
     enemyNode* current = this->EnemyRenderList->head;
+
     this->spawnTimer += 0.5f;
-    if(this->spawnTimer >=this->spawnTimerMax)
-    {
-        if(this->EnemyMagazine->head == nullptr){
 
-            std::cout<<"no more enemies in enemy magazine"<<std::endl;
+    if(waitNextWave == false){
+        if(this->spawnTimer >=this->spawnTimerMax)
+        {
+            if(this->EnemyWaves[this->waveCounter]->head == nullptr){
+
+                this->waveCounter++;
+                this->nextWaveTimer = 0.f;
+
+
+            }
+
+            else{
+
+                EnemyRenderList->addFirst(EnemyWaves[this->waveCounter]->removeFirst());
+
+                this->spawnTimer = 0.f;
+            }
         }
-        else{
 
-            EnemyRenderList->addFirst(EnemyMagazine->removeFirst());
-
-            this->spawnTimer = 0.f;
-        }
     }
     while(current != nullptr)
-    {
-        current->enemy->update();
-        if(current->enemy->getBounds().top<0 ||current->enemy->getBounds().top+100>720){
+        {
+            current->enemy->update();
+            if(current->enemy->getBounds().top<0 ||current->enemy->getBounds().top+100>720){
 
-            current->enemy->speedY = current->enemy->speedY *-1.f;
+                current->enemy->speedY = current->enemy->speedY *-1.f;
+            }
+
+            current = current->nextEnemy;
         }
 
-        current = current->nextEnemy;
-    }
-
 }
+
 void Game::updateText(){
 
     std::string shootingSpeed = "Shooting Speed: " + std::to_string(this->player->getCooldown());
@@ -272,6 +327,11 @@ void Game::updateText(){
 
     this->text[1].setString(Ammo);
 
+
+    int x = this->waveCounter;
+    std::string wave = "Wave: "+ std::to_string(x+1);
+
+    this->text[2].setString(wave);
 }
 
 void Game::renderText(){
