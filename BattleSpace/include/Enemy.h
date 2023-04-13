@@ -6,7 +6,7 @@
 class Enemy
 {
     public:
-        Enemy(float pos_x, float pos_y);
+        Enemy(float pos_x, float pos_y,int shipType);
         virtual ~Enemy();
         const sf::FloatRect getBounds() const;
         void update();
@@ -14,6 +14,7 @@ class Enemy
         sf::Sprite enemySprite;
         float speedY;
         float speedX;
+        int Type;
 
     protected:
 
@@ -26,9 +27,9 @@ class Enemy
         int damage;
         int points;
         void initShape();
-        void initVariables();
+        void initVariables(int shipType);
         void initSprite();
-        void initTexture();
+        void initTexture(int shipType);
         float spawnTimer;
         float spawnTimerMax;
 

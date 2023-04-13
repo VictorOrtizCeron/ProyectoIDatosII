@@ -17,7 +17,7 @@ void Game::initTextures()
 void Game::initPlayer()
 {
     this->player = new Player();
-    this->enemy = new Enemy(20.f,20.f);
+
 }
 
 void Game::initGatheringCollector()
@@ -73,7 +73,13 @@ void Game:: initEnemyMagazine(){
 
     for(int i =0; i<7 ; i++){
 
-        this->EnemyMagazine->addFirst(new Enemy(1400,rand()%690));
+        if(i<4){
+            this->EnemyMagazine->addFirst(new Enemy(1400,rand()%690,1));
+        }
+        else{
+
+            this->EnemyMagazine->addFirst(new Enemy(1400,rand()%690,0));
+        }
 
     }
 }
