@@ -10,9 +10,8 @@ void Game::initWindow()
 void Game::initTextures()
 {
     this->textures["Bullet"] = new sf::Texture();
-    this->textures["Bullet"]->loadFromFile("misil.png");
-    this->textures["GreenShip"] = new sf::Texture();
-    this->textures["GreenShip"]->loadFromFile("GreenShip.png");
+    this->textures["Bullet"]->loadFromFile("misil2.png");
+
 }
 void Game::initPlayer()
 {
@@ -108,7 +107,7 @@ void Game::initEnemyRenderList(){
 }
 void Game::initTimers(){
 
-    this->spawnTimerMax = 75.f;
+    this->spawnTimerMax = 100.f;
     this->spawnTimer = this->spawnTimerMax;
     this->nextWaveTimer = 0.f;
     this->nextWaveTimerMax = 200.f;
@@ -125,7 +124,7 @@ Game::Game()
     this->initGatheringCollector();
     this->initShootingCollector();
     this->initshotBullets();
-    this->initMagazine(150);
+    this->initMagazine(200);
     this->initFont();
     this->initText();
     this->initTimers();
@@ -282,6 +281,8 @@ void Game::updateEnemies()
 
     enemyNode* current = this->EnemyRenderList->head;
 
+    bulletNode* currentBullet = this->shotBullets->head;
+
     this->spawnTimer += 0.5f;
 
     if(waitNextWave == false){
@@ -310,6 +311,23 @@ void Game::updateEnemies()
             if(current->enemy->getBounds().top<0 ||current->enemy->getBounds().top+100>720){
 
                 current->enemy->speedY = current->enemy->speedY *-1.f;
+            }
+            while(currentBullet!=nullptr){
+
+                //Deteccion de colisiones, requiere mejoras con el png
+                if(current->enemy->getBounds().intersects(currentBullet->bullet->getBounds())){
+
+                    Bullet *bulletPTR = shotBullets->removeBullet(currentBullet->bullet);
+
+                    Enemy * enemyPTR = EnemyRenderList->removeEnemy(current->enemy);
+
+                    delete(bulletPTR);
+
+
+                    delete(enemyPTR);
+                }
+                currentBullet = currentBullet->nextBullet;
+
             }
 
             current = current->nextEnemy;

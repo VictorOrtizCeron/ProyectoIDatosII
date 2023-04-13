@@ -51,13 +51,13 @@ void Player::move(const float dirX, const float dirY)
 
 void Player::SlowAttackCooldownMax(float increment){
 
-    if(attackCooldownMax == 3.5 && increment>0){
+    if(attackCooldownMax == 5 && increment>0){
         this->attackCooldownMax = this->attackCooldownMax + increment;
     }
-    if(attackCooldownMax == 25 && increment<0){
+    if(attackCooldownMax == 30 && increment<0){
         this->attackCooldownMax = this->attackCooldownMax + increment;
     }
-    if(attackCooldownMax<25 && attackCooldownMax> 3.5){
+    if(attackCooldownMax<30 && attackCooldownMax> 5){
 
         this->attackCooldownMax = this->attackCooldownMax + increment;
     }
