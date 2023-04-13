@@ -73,7 +73,7 @@ void Game:: initEnemyMagazine(){
 
     for(int i =0; i<7 ; i++){
 
-        this->EnemyMagazine->addFirst(new Enemy(1100,rand()%690));
+        this->EnemyMagazine->addFirst(new Enemy(1400,rand()%690));
 
     }
 }
@@ -83,7 +83,7 @@ void Game::initEnemyRenderList(){
 }
 void Game::initEnemies(){
 
-    this->spawnTimerMax = 50.f;
+    this->spawnTimerMax = 75.f;
     this->spawnTimer = this->spawnTimerMax;
 }
 
@@ -247,6 +247,11 @@ void Game::updateEnemies()
     while(current != nullptr)
     {
         current->enemy->update();
+        if(current->enemy->getBounds().top<0 ||current->enemy->getBounds().top+100>720){
+
+            current->enemy->speedY = current->enemy->speedY *-1.f;
+        }
+
         current = current->nextEnemy;
     }
 

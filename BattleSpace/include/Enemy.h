@@ -12,7 +12,8 @@ class Enemy
         void update();
         void render(sf::RenderTarget& target);
         sf::Sprite enemySprite;
-
+        float speedY;
+        float speedX;
 
     protected:
 
@@ -30,6 +31,7 @@ class Enemy
         void initTexture();
         float spawnTimer;
         float spawnTimerMax;
+
 };
 
 #endif // ENEMY_H

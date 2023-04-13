@@ -8,12 +8,13 @@ void Enemy::initVariables()
         this->hp = 0;
         this->damage = 1;
         this->points = 5;
-
+        this->speedX = -2.f;
+        this->speedY = -2.f;
 }
 //codigo para cambiar los "shapes" por la imagen de la nave rival
 void Enemy::initTexture(){
 
-    if (!this->enemyTexture.loadFromFile("RedShip.png")){
+    if (!this->enemyTexture.loadFromFile("GreenShip.png")){
             std::cout<<"Error no se cargo la imagen"<<std::endl;
         }
 }
@@ -36,10 +37,14 @@ Enemy::~Enemy()
     //dtor
 }
 
+const sf::FloatRect Enemy::getBounds() const{
+
+    return this->enemySprite.getGlobalBounds();
+}
 
 void Enemy::update()
 {
-
+    this->enemySprite.move(speedX,speedY);
 }
 
 void Enemy::render(sf::RenderTarget& target)
