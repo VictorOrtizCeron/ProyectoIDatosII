@@ -11,38 +11,7 @@
 
 using namespace sf;
 
-void GameWindow(){
 
-//crea la ventana del juego
-    sf::RenderWindow ventanajuego(sf::VideoMode(1280, 720), "Ventana de Juego");
-
-
-        sf::Texture mainShiptexture;
-        if (!mainShiptexture.loadFromFile("MainShip.png"))
-        {
-
-            std::cout<<"Failed to load MainSHip texture" ;
-        }
-
-
-        sf::Sprite mainShip;
-        mainShip.setTexture(mainShiptexture);
-
-        while (ventanajuego.isOpen())
-        {
-            sf::Event event;
-            while (ventanajuego.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed)
-                    ventanajuego.close();
-            }
-
-            ventanajuego.clear();
-            ventanajuego.draw(mainShip);
-            ventanajuego.display();
-        }
-
-}
 
 void StartMenu(){
     RenderWindow MENU(VideoMode(960,720) ,"Main Menu", Style::Close);
@@ -112,12 +81,9 @@ void StartMenu(){
 
 int main()
 {
+    StartMenu();
     //StartMenu();
-    srand(time(static_cast<unsigned>(0)));
-    Game game;
 
-    //game functions
-    game.run();
 
     //por ahora solo estamos abriendo el game window desde el main, la idea esa que se abra desde menu, esto es
     // solo para testear funcionalidad

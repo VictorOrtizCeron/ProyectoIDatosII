@@ -10,27 +10,27 @@ MainMenu::MainMenu(float width, float height)
     //Play button
     mainMenu[0].setFont(font);
     mainMenu[0].setFillColor(Color::White);
-    mainMenu[0].setString("Play");
-    mainMenu[0].setCharacterSize(70);
+    mainMenu[0].setString("Principiante");
+    mainMenu[0].setCharacterSize(40);
     mainMenu[0].setPosition(200,200);
     //Settings
     mainMenu[1].setFont(font);
     mainMenu[1].setFillColor(Color::White);
-    mainMenu[1].setString("Settings");
-    mainMenu[1].setCharacterSize(70);
+    mainMenu[1].setString("Intermedio");
+    mainMenu[1].setCharacterSize(40);
     mainMenu[1].setPosition(200,300);
     //about
     mainMenu[2].setFont(font);
     mainMenu[2].setFillColor(Color::White);
-    mainMenu[2].setString("About");
-    mainMenu[2].setCharacterSize(70);
+    mainMenu[2].setString("Avanzado");
+    mainMenu[2].setCharacterSize(40);
     mainMenu[2].setPosition(200,400);
 
     //Exit
     mainMenu[3].setFont(font);
     mainMenu[3].setFillColor(Color::White);
-    mainMenu[3].setString("Exit");
-    mainMenu[3].setCharacterSize(70);
+    mainMenu[3].setString("Salir");
+    mainMenu[3].setCharacterSize(40);
     mainMenu[3].setPosition(200,500);
 
     MainMenuSelected = -1;
@@ -61,7 +61,7 @@ void MainMenu::moveUp(){
     MainMenuSelected--;
     if(MainMenuSelected == -1){
 
-        MainMenuSelected=2;
+        MainMenuSelected=3;
         }
 
     mainMenu[MainMenuSelected].setFillColor(Color::Red);

@@ -24,6 +24,7 @@ class Game
         void render();
         void updateText();
         void renderText();
+        void updateLevel();
 
     protected:
 
@@ -33,6 +34,7 @@ class Game
         sf::Font font;
         int waveCounter;
         Enemy* enemy;
+        int Level;
         Player* player;
         BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
         BulletLinkedList* shootingCollector;//lista de balas recogidas en ronda anterior que se van a disparar

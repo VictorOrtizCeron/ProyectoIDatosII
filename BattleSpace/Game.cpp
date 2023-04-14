@@ -96,13 +96,12 @@ void Game:: initEnemyWaves(){
         this->EnemyWaves[i]= Wave;
 
     }
-    std::cout<<this->EnemyWaves<<std::endl;
 
 }
 
 
 void Game::initEnemyRenderList(){
-    this-> EnemyRenderList = new enemyLinkedList;
+    this-> EnemyRenderList = new enemyLinkedList();
 
 }
 void Game::initTimers(){
@@ -179,9 +178,9 @@ void Game::updateInput()
 {
      //movimiento del main ship
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)&& this->player->getBounds().top>0)
         this->player->move(0.f,-3.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)&& this->player->getBounds().top+100<720)
         this->player->move(0.f,3.f);
     //Control de velocidad de disparo
     //velocidad de disparo por default 10.f
@@ -207,25 +206,24 @@ void Game::updateInput()
             bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
             this->player->getPos().y,
             1.f,0.f,5.f);
-            std::cout<< bulletPTR<<std::endl;
+
             shotBullets->addFirst(bulletPTR);
 
         }
         else{
             if (Magazine->size==0){
 
-                std::cout<<"no ammo"<<std::endl;
+                //std::cout<<"no ammo"<<std::endl;
 
             }
             else{
                 Bullet* bulletPTR = Magazine->head->bullet;
                 this->Magazine->removeFirst();
-                bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
-                this->player->getPos().y,
+                bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x+20 + this->player->getBounds().width/2.f,
+                this->player->getPos().y+40,
                 1.f,0.f,5.f);
 
                 shotBullets->addFirst(bulletPTR);
-                std::cout<<Magazine->size<<std::endl;
 
             }
         }
@@ -250,6 +248,7 @@ void Game::updateBullets(){
 
                 Bullet* bulletPTR = shotBullets->removeBullet(current->bullet);
                 gatheringCollector->addFirst(bulletPTR);
+                //std::cout<<gatheringCollector->size<<std::endl;
             }
 
             current = current->nextBullet;
@@ -259,11 +258,7 @@ void Game::updateBullets(){
 
 void Game::updateEnemies()
 {
-    if(waveCounter>4){
 
-        this->initEnemyWaves();
-
-    }
 
     this->nextWaveTimer += 0.5f;
 
@@ -290,7 +285,9 @@ void Game::updateEnemies()
         {
             if(this->EnemyWaves[this->waveCounter]->head == nullptr){
 
+
                 this->waveCounter++;
+                std::cout<<this->waveCounter<<std::endl;
                 this->nextWaveTimer = 0.f;
 
 
@@ -312,6 +309,12 @@ void Game::updateEnemies()
 
                 current->enemy->speedY = current->enemy->speedY *-1.f;
             }
+            if(current->enemy->getBounds().left+100<0){
+
+                Enemy* enemyPTR = this->EnemyRenderList->removeEnemy(current->enemy);
+                delete(enemyPTR);
+            }
+
             while(currentBullet!=nullptr){
 
                 //Deteccion de colisiones, requiere mejoras con el png
@@ -334,7 +337,23 @@ void Game::updateEnemies()
         }
 
 }
+void Game::updateLevel(){
 
+    std::cout<<this->waveCounter<<std::endl;
+    if(waveCounter>4){
+
+        this->waveCounter = 0;
+
+
+        for (int i = 0 ; i<5 ;i++){
+
+
+            delete(this->EnemyWaves[i]);
+        }
+        this->initEnemyWaves();
+
+    }
+}
 void Game::updateText(){
 
     std::string shootingSpeed = "Shooting Speed: " + std::to_string(this->player->getCooldown());
@@ -366,7 +385,9 @@ void Game::update()
     this->player->update();
     this->updateBullets();
     this->updateText();
+    this->updateLevel();
     this->updateEnemies();
+
 }
 void Game::render()
 {
