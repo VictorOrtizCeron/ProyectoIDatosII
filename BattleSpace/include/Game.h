@@ -14,6 +14,7 @@ class Game
 {
     public:
         Game();
+        Game(int difficulty);
         virtual ~Game();
         void run();
         void updatePollEvents();
@@ -35,6 +36,8 @@ class Game
         int waveCounter;
         Enemy* enemy;
         int Level;
+        int WaveEnemies;
+        float enemySpeedX;
         Player* player;
         BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
         BulletLinkedList* shootingCollector;//lista de balas recogidas en ronda anterior que se van a disparar

@@ -82,14 +82,18 @@ void Game:: initEnemyWaves(){
 
         enemyLinkedList* Wave = new enemyLinkedList();
 
-        for(int j =0; j<7 ; j++){
+        for(int j =0; j<this->WaveEnemies ; j++){
 
-            if(j<4){
-                Wave->addFirst(new Enemy(1400,rand()%690,1));
+            if(j%2 ==0){
+                Enemy* enemyPTR = new Enemy(1400,rand()%670,1);
+                enemyPTR->speedX = this->enemySpeedX;
+                Wave->addFirst(enemyPTR);
             }
             else{
 
-                Wave->addFirst(new Enemy(1400,rand()%690,0));
+                Enemy* enemyPTR = new Enemy(1400,rand()%670,0);
+                enemyPTR->speedX = this->enemySpeedX;
+                Wave->addFirst(enemyPTR);
             }
 
         }
@@ -131,6 +135,42 @@ Game::Game()
     this->initEnemyRenderList();
     this->initEnemyWaves();
     this->initTimers();
+}
+Game::Game(int difficulty)
+{
+    this->initWindow();
+    this->initTextures();
+    this->initPlayer();
+    this->initTimers();
+    this->initGatheringCollector();
+    this->initShootingCollector();
+    this->initshotBullets();
+    int bullets;
+    if(difficulty==1){
+        bullets=200;
+        this->WaveEnemies = 7;
+        this->enemySpeedX = -2.f;
+        }
+    if(difficulty==2){
+        bullets=180;
+        this->WaveEnemies = 10;
+        this->enemySpeedX = -4.f;
+        }
+    if(difficulty==3){
+        bullets=160;
+        this->WaveEnemies = 13;
+        this->enemySpeedX = -6.f;
+        }
+
+    this->initMagazine(bullets);
+    this->initFont();
+    this->initText();
+    this->initTimers();
+
+    this->initEnemyRenderList();
+    this->initEnemyWaves();
+    this->initTimers();
+
 }
 
 Game::~Game()

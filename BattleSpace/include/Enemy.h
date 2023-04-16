@@ -21,7 +21,7 @@ class Enemy
     private:
 
         sf::Texture enemyTexture;
-        int type;
+
         int hp;
         int hpMax;
         int damage;

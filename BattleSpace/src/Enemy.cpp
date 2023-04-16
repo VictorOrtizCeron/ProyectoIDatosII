@@ -5,7 +5,7 @@ void Enemy::initVariables(int shipType)
 {
     if(shipType==0)
         {
-        this->type = 0;
+        this->Type = 0;
         this->hpMax = 10;
         this->hp = 0;
         this->damage = 1;
@@ -14,7 +14,7 @@ void Enemy::initVariables(int shipType)
         this->speedY = -2.f;
         }
     else{
-        this->type = 0;
+        this->Type = 0;
         this->hpMax = 10;
         this->hp = 0;
         this->damage = 1;

@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1681368785 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
+1681681237 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/main.cpp
 	<SFML/Graphics.hpp>
 	<stdio.h>
 	"Game.h"
 	<iostream>
 	<time.h>
 	"MainMenu.h"
+	"libxml2/libxml/parser.h"
 
 1680874530 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/main.cpp
 	<SFML/Graphics.hpp>
@@ -20,7 +21,7 @@
 
 1679598495 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/game.h
 
-1679679796 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/MainMenu.h
+1681521999 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/MainMenu.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
@@ -66,10 +67,10 @@
 1680877190 source:/home/fernando/Documentos/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
 	"Enemy.h"
 
-1681436394 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
+1681682049 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/Game.cpp
 	"Game.h"
 
-1681436394 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
+1681682349 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Game.h
 	"Player.h"
 	"Bullet.h"
 	"Enemy.h"
@@ -88,14 +89,14 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1681360462 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Enemy.h
+1681513388 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/Enemy.h
 	<SFML/Graphics.hpp>
 	<iostream>
 
 1681151860 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Bullet.cpp
 	"Bullet.h"
 
-1681360462 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
+1681513396 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
 	"Enemy.h"
 
 1681368522 source:/home/vortizc/Documents/ProyectoIDatosII/BattleSpace/src/Player.cpp

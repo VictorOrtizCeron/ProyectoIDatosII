@@ -4,6 +4,7 @@
 #include <iostream>
 #include <time.h>
 #include "MainMenu.h"
+#include "libxml2/libxml/parser.h"
 
 // Proyecto 1 Datos 2
 // Fernando Fuchs 2020144908
@@ -50,18 +51,27 @@ void StartMenu(){
                     //aqui van las funcionalidades de los botones para compenzar partidas
                     if(x == 0){
                         srand(time(static_cast<unsigned>(0)));
-                        Game game;
+                        Game game(1);
 
                         //game functions
                         game.run();
                         }
 
                     if(x == 1){
-                        std::cout<<"opciones"<< std::endl;
+
+                        srand(time(static_cast<unsigned>(0)));
+                        Game game(2);
+
+                        //game functions
+                        game.run();
                         }
 
                     if(x == 2){
-                        std::cout<<"about"<< std::endl;
+                        srand(time(static_cast<unsigned>(0)));
+                        Game game(3);
+
+                        //game functions
+                        game.run();
                         }
 
                     if(x == 3){
