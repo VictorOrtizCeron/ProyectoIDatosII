@@ -29,14 +29,27 @@ void Game:: initShootingCollector(){
 }
 void Game::initMagazine(int i){
 
-    this -> Magazine = new BulletLinkedList();
-    for(int j =0 ; j<i;j++){
+    if(this->Level==1){
+        this -> Magazine = new BulletLinkedList();
+        for(int j =0 ; j<i;j++){
 
-        Magazine -> addFirst(new Bullet());
+            Magazine -> addFirst(new Bullet());
+
+        }
+    }
+    else{
+        std::cout<<"entra al else de init Magazine"<<std::endl;
+        for(int j =0 ; j<i;j++){
+
+            Magazine -> addFirst(new Bullet());
+
+        }
 
     }
 
 }
+
+
 
 void Game::initshotBullets(){
 
@@ -62,6 +75,12 @@ void Game:: initText(){
     this->text[2].setCharacterSize(20);
     this->text[2].setFillColor(sf::Color::White);
     this->text[2].setPosition(700, 650);
+
+    this->text[3].setFont(this->font);
+    this->text[3].setString("Level: ");
+    this->text[3].setCharacterSize(20);
+    this->text[3].setFillColor(sf::Color::White);
+    this->text[3].setPosition(900, 650);
 
 }
 void Game:: initFont(){
@@ -145,23 +164,23 @@ Game::Game(int difficulty)
     this->initGatheringCollector();
     this->initShootingCollector();
     this->initshotBullets();
-    int bullets;
+
     if(difficulty==1){
-        bullets=200;
+        this->bullets=200;
         this->WaveEnemies = 7;
         this->enemySpeedX = -2.f;
         }
     if(difficulty==2){
-        bullets=180;
+        this->bullets=180;
         this->WaveEnemies = 10;
         this->enemySpeedX = -4.f;
         }
     if(difficulty==3){
-        bullets=160;
+        this->bullets=160;
         this->WaveEnemies = 13;
         this->enemySpeedX = -6.f;
         }
-
+    this->Level=1;
     this->initMagazine(bullets);
     this->initFont();
     this->initText();
@@ -383,7 +402,7 @@ void Game::updateLevel(){
     if(waveCounter>4){
 
         this->waveCounter = 0;
-
+        this->Level = this->Level+1;
 
         for (int i = 0 ; i<5 ;i++){
 
@@ -391,6 +410,7 @@ void Game::updateLevel(){
             delete(this->EnemyWaves[i]);
         }
         this->initEnemyWaves();
+        this->initMagazine(this->bullets);
 
     }
 }
@@ -409,11 +429,13 @@ void Game::updateText(){
     std::string wave = "Wave: "+ std::to_string(x+1);
 
     this->text[2].setString(wave);
+
+    this->text[3].setString("Level:" +std::to_string(this->Level));
 }
 
 void Game::renderText(){
 
-    for (int i = 0; i< 4; i++){
+    for (int i = 0; i< 5; i++){
         this->window->draw(text[i]);
     }
 
@@ -423,9 +445,10 @@ void Game::update()
     this->updatePollEvents();
     this->updateInput();
     this->player->update();
+
+    this->updateLevel();
     this->updateBullets();
     this->updateText();
-    this->updateLevel();
     this->updateEnemies();
 
 }

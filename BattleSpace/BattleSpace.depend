@@ -129,3 +129,82 @@
 1681335160 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyNode.h
 	"Enemy.h"
 
+1681942424 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/Game.cpp
+	"Game.h"
+
+1681941962 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Game.h
+	"Player.h"
+	"Bullet.h"
+	"Enemy.h"
+	<map>
+	"BulletLinkedList.h"
+	<iostream>
+	<string>
+	"enemyLinkedList.h"
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Player.h
+	<SFML/Graphics.hpp>
+	<SFML/System.hpp>
+	<iostream>
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Bullet.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Enemy.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/BulletLinkedList.h
+	"bulletNode.h"
+	"Bullet.h"
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/bulletNode.h
+	"Bullet.h"
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/enemyLinkedList.h
+	"enemyNode.h"
+	"Enemy.h"
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/enemyNode.h
+	"Enemy.h"
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/main.cpp
+	<SFML/Graphics.hpp>
+	<stdio.h>
+	"Game.h"
+	<iostream>
+	<time.h>
+	"MainMenu.h"
+	"libxml2/libxml/parser.h"
+
+1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/MainMenu.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/MainMenu.cpp
+	"MainMenu.h"
+	<iostream>
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/Bullet.cpp
+	"Bullet.h"
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/BulletLinkedList.cpp
+	"BulletLinkedList.h"
+	<iostream>
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/bulletNode.cpp
+	"bulletNode.h"
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/Enemy.cpp
+	"Enemy.h"
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/enemyLinkedList.cpp
+	"enemyLinkedList.h"
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/enemyNode.cpp
+	"enemyNode.h"
+
+1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/Player.cpp
+	"Player.h"
+

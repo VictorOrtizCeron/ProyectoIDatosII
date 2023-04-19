@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 #include "enemyLinkedList.h"
-#define Max_inGame 4
+#define Max_inGame 5
 
 class Game
 {
@@ -37,6 +37,7 @@ class Game
         Enemy* enemy;
         int Level;
         int WaveEnemies;
+        int bullets;
         float enemySpeedX;
         Player* player;
         BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
@@ -53,7 +54,7 @@ class Game
 
         enemyLinkedList* EnemyWaves[5];
         std::map <std::string, sf::Texture*>textures;
-        std::vector<Bullet*> bullets;
+
         void initWindow();
         void initTextures();
         void initPlayer();
@@ -68,6 +69,7 @@ class Game
         void initEnemyRenderList();
         void initEnemyGatherer();
         void initEnemyWaves();
+
 
 };
 
