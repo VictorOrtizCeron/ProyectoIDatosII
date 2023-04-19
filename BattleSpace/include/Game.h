@@ -7,6 +7,8 @@
 #include "BulletLinkedList.h"
 #include <iostream>
 #include <string>
+#include <cstring>
+#include <unistd.h>
 #include "enemyLinkedList.h"
 #define Max_inGame 5
 
@@ -38,6 +40,7 @@ class Game
         int Level;
         int WaveEnemies;
         int bullets;
+        int CurrentPotVal;
         float enemySpeedX;
         Player* player;
         BulletLinkedList* gatheringCollector;//lista de balas que no impactaron enemigos en la ronda actual
@@ -69,6 +72,7 @@ class Game
         void initEnemyRenderList();
         void initEnemyGatherer();
         void initEnemyWaves();
+        FILE* serial_port;
 
 
 };

@@ -129,10 +129,10 @@
 1681335160 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyNode.h
 	"Enemy.h"
 
-1681942424 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/Game.cpp
+1681947610 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/Game.cpp
 	"Game.h"
 
-1681941962 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Game.h
+1681948272 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Game.h
 	"Player.h"
 	"Bullet.h"
 	"Enemy.h"
@@ -140,6 +140,8 @@
 	"BulletLinkedList.h"
 	<iostream>
 	<string>
+	<cstring>
+	<unistd.h>
 	"enemyLinkedList.h"
 
 1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Player.h

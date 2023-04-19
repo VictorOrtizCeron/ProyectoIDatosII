@@ -189,7 +189,8 @@ Game::Game(int difficulty)
     this->initEnemyRenderList();
     this->initEnemyWaves();
     this->initTimers();
-
+    this->serial_port= fopen("/dev/ttyUSB0","r+");
+    this->CurrentPotVal= 0;
 }
 
 Game::~Game()
@@ -237,12 +238,52 @@ void Game::updateInput()
 {
      //movimiento del main ship
 
+
+    //corre lento pero corre
+
+    char buffer[256];
+
+    char analogBuffer[256];
+
+    fscanf(serial_port, "%s",&buffer);
+    fscanf(serial_port, "%s", &analogBuffer);
+    int len = strlen(analogBuffer);
+    memmove(analogBuffer,analogBuffer+2,len-1);
+    analogBuffer[len-2]= '\0';
+
+    //printf("%c %c %s \n", buffer[0],buffer[1],analogBuffer);
+
+    if(buffer[0]== '1'){
+
+        this->player->move(0.f,-3.f);
+    }
+    if(buffer[1]== '1'){
+
+        this->player->move(0.f,3.f);
+    }
+
+
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)&& this->player->getBounds().top>0)
         this->player->move(0.f,-3.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)&& this->player->getBounds().top+100<720)
         this->player->move(0.f,3.f);
+
+
     //Control de velocidad de disparo
     //velocidad de disparo por default 10.f
+
+    int potVal = std::atoi(analogBuffer);
+
+    if(potVal > this->CurrentPotVal){
+        this->player->SlowAttackCooldownMax(1.f);
+        this->CurrentPotVal = potVal;
+    }
+    if(potVal < this->CurrentPotVal){
+        this->player->SlowAttackCooldownMax(-1.f);
+        this->CurrentPotVal = potVal;
+    }
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::K))
         this->player->SlowAttackCooldownMax(0.5f);
 
@@ -346,7 +387,7 @@ void Game::updateEnemies()
 
 
                 this->waveCounter++;
-                std::cout<<this->waveCounter<<std::endl;
+                //std::cout<<this->waveCounter<<std::endl;
                 this->nextWaveTimer = 0.f;
 
 
@@ -411,7 +452,7 @@ void Game::updateLevel(){
         }
         this->initEnemyWaves();
         this->initMagazine(this->bullets);
-
+        //meter balas de gatheringCollector a shootingCollector
     }
 }
 void Game::updateText(){
