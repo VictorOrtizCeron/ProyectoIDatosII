@@ -530,6 +530,12 @@ void Game::updateLevel(){
         this->initMagazine(this->bullets);
         bulletNode * current = this->gatheringCollector->head;
         bulletNode * next ;
+
+        while(this->shootingCollector->size != 0){
+
+            this->shootingCollector->removeFirst();
+
+        }
         while(current != nullptr){
             next = current->nextBullet;
             this->shootingCollector->addFirst(this->gatheringCollector->removeFirstPTR());
