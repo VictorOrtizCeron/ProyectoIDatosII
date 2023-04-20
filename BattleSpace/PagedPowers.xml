@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<root>
+    <powerups>
+        <powerup>
+            <name>Speed Boost</name>
+            <description>Incrementa la velocidad de la nave del usuario en un 50%</description>
+            <duration>15</duration>
+        </powerup>
+        <powerup>
+            <name>Speed Enemies</name>
+            <description>Reduce la velocidad de los enemigos</description>
+            <duration>10</duration>
+        </powerup>
+        <powerup>
+            <name>Super Bullets</name>
+            <description>Permite que la nave del usuario dispare balas especiales para eliminar enemigos</description>
+            <duration>5</duration>
+        </powerup>
+        <powerup>
+            <name>Big bullets</name>
+            <description>Incrementa el la circunferencia de las balas.</description>
+            <duration>15</duration>
+        </powerup>
+    </powerups>
+</root>

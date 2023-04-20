@@ -212,6 +212,16 @@ Game::Game(int difficulty)
 
     }
     this->CurrentPotVal= 0;
+
+    this->doc = NULL;
+    this->root_element = NULL;
+
+    this->doc = xmlReadFile("PagedPowers.xml", nullptr, 0);
+
+     if (doc == nullptr) {
+        std::cerr << "Error: Could not parse file" << std::endl;
+
+    }
 }
 
 Game::~Game()
@@ -255,6 +265,20 @@ void Game::updatePollEvents()
     }
 }
 
+void Game::print_element_names(xmlNode * a_node)
+{
+    xmlNode *cur_node = nullptr;
+
+    for (cur_node = a_node; cur_node; cur_node =
+         cur_node->next) {
+      if (cur_node->type== XML_ELEMENT_NODE) {
+        xmlChar* content = xmlNodeGetContent(cur_node);
+        std::cout<<cur_node->name<<": "<<content<<std::endl;
+       }
+        print_element_names(cur_node->children);
+
+    }
+ }
 void Game::updateInput()
 {
      //movimiento del main ship
@@ -273,9 +297,7 @@ void Game::updateInput()
     analogBuffer[len-2]= '\0';
 
 
-    //char ch = 'a';
-    //fputc(ch, serial_port);
-    //printf("%c %c %s \n", buffer[0],buffer[1],analogBuffer);
+
 
     if(buffer[0]== '1'&& this->player->getBounds().top>0){
 
@@ -292,6 +314,14 @@ void Game::updateInput()
         this->player->move(0.f,-3.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)&& this->player->getBounds().top+100<720)
         this->player->move(0.f,3.f);
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+
+        this->root_element = xmlDocGetRootElement(this->doc);
+        this->print_element_names(this->root_element);
+        this->root_element = NULL;
+
+
 
 
     //Control de velocidad de disparo
@@ -415,7 +445,7 @@ void Game::updateEnemies()
                 int data = 420;
 
                 fprintf(this->serial_port_write, "%d\n", data);
-                int waveToSevenSegment = this->waveCounter;
+
 
                 //std::cout<<this->waveCounter<<std::endl;
                 this->nextWaveTimer = 0.f;
@@ -474,7 +504,7 @@ void Game::updateEnemies()
 }
 void Game::updateLevel(){
 
-    std::cout<<this->waveCounter<<std::endl;
+
     if(waveCounter>4){
 
         this->waveCounter = 0;
@@ -494,7 +524,7 @@ void Game::updateLevel(){
             this->shootingCollector->addFirst(this->gatheringCollector->removeFirstPTR());
             current = next;
         }
-        //this->gatheringCollector->size=0;
+
     }
 }
 void Game::updateText(){

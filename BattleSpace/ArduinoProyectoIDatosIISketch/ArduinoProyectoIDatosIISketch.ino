@@ -58,7 +58,7 @@ void loop() {
   
   
 
-  
+  digitalWrite(BuzzerPin,LOW);
   potVal= analogRead(potPin);
   Serial.print(digitalRead(buttonUPpin));
   Serial.print(digitalRead(buttonDOWNpin));

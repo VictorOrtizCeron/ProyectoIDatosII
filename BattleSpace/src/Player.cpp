@@ -65,7 +65,7 @@ void Player::SlowAttackCooldownMax(float increment){
         return;
     }
 
-    std::cout<< attackCooldownMax<<std::endl;
+
 
 
 }

@@ -11,6 +11,8 @@
 #include <unistd.h>
 #include "enemyLinkedList.h"
 #define Max_inGame 6
+#include "libxml/parser.h"
+#include "libxml/tree.h"
 
 class Game
 {
@@ -54,10 +56,10 @@ class Game
         bool waitNextWave;
         enemyLinkedList* EnemyRenderList;
         enemyLinkedList* EnemyGatherer;
-
+        std::string powerup;
         enemyLinkedList* EnemyWaves[5];
         std::map <std::string, sf::Texture*>textures;
-
+        void print_element_names(xmlNode * a_node);
         void initWindow();
         void initTextures();
         void initPlayer();
@@ -74,7 +76,8 @@ class Game
         void initEnemyWaves();
         FILE* serial_port;
         FILE* serial_port_write;
-
+        xmlDoc* doc;
+        xmlNode* root_element;
 };
 
 #endif // GAME_H

@@ -129,10 +129,10 @@
 1681335160 /home/vortizc/Documents/ProyectoIDatosII/BattleSpace/include/enemyNode.h
 	"Enemy.h"
 
-1681963334 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/Game.cpp
+1682012833 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/Game.cpp
 	"Game.h"
 
-1681961797 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Game.h
+1682012761 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Game.h
 	"Player.h"
 	"Bullet.h"
 	"Enemy.h"
@@ -143,6 +143,8 @@
 	<cstring>
 	<unistd.h>
 	"enemyLinkedList.h"
+	"libxml/parser.h"
+	"libxml/tree.h"
 
 1681939490 /home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/include/Player.h
 	<SFML/Graphics.hpp>
@@ -207,6 +209,117 @@
 1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/enemyNode.cpp
 	"enemyNode.h"
 
-1681939490 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/Player.cpp
+1682013294 source:/home/vortizc/Desktop/ProyectoDatosIIFINAL/ProyectoIDatosII/BattleSpace/src/Player.cpp
 	"Player.h"
+
+1669750747 /usr/include/libxml2/libxml/parser.h
+	<stdarg.h>
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+	<libxml/dict.h>
+	<libxml/hash.h>
+	<libxml/valid.h>
+	<libxml/entities.h>
+	<libxml/xmlerror.h>
+	<libxml/xmlstring.h>
+	<libxml/encoding.h>
+	<libxml/xmlIO.h>
+	<libxml/globals.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlversion.h
+	<libxml/xmlexports.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlexports.h
+
+1669750747 /usr/include/libxml2/libxml/tree.h
+	<stdio.h>
+	<limits.h>
+	<libxml/xmlversion.h>
+	<libxml/xmlstring.h>
+	<libxml/xmlregexp.h>
+	<libxml/xmlmemory.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlstring.h
+	<stdarg.h>
+	<libxml/xmlversion.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlregexp.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+	<libxml/dict.h>
+
+1669750747 /usr/include/libxml2/libxml/dict.h
+	<stddef.h>
+	<libxml/xmlversion.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlmemory.h
+	<stdio.h>
+	<libxml/xmlversion.h>
+	<libxml/threads.h>
+	<libxml/globals.h>
+
+1669750747 /usr/include/libxml2/libxml/threads.h
+	<libxml/xmlversion.h>
+	<libxml/globals.h>
+
+1669750747 /usr/include/libxml2/libxml/globals.h
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/xmlerror.h>
+	<libxml/SAX2.h>
+	<libxml/xmlmemory.h>
+	<libxml/threads.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlerror.h
+	<libxml/parser.h>
+
+1669750747 /usr/include/libxml2/libxml/SAX2.h
+	<stdio.h>
+	<stdlib.h>
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/xlink.h>
+
+1669750747 /usr/include/libxml2/libxml/xlink.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+
+1669750747 /usr/include/libxml2/libxml/hash.h
+	<libxml/xmlversion.h>
+	<libxml/parser.h>
+	<libxml/dict.h>
+
+1669750747 /usr/include/libxml2/libxml/valid.h
+	<libxml/xmlversion.h>
+	<libxml/xmlerror.h>
+	<libxml/tree.h>
+	<libxml/list.h>
+	<libxml/xmlautomata.h>
+	<libxml/xmlregexp.h>
+
+1669750747 /usr/include/libxml2/libxml/list.h
+	<libxml/xmlversion.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlautomata.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+	<libxml/xmlregexp.h>
+
+1669750747 /usr/include/libxml2/libxml/entities.h
+	<libxml/xmlversion.h>
+	<libxml/tree.h>
+
+1669750747 /usr/include/libxml2/libxml/encoding.h
+	<libxml/xmlversion.h>
+	<iconv.h>
+	<unicode/ucnv.h>
+	<libxml/tree.h>
+
+1669750747 /usr/include/libxml2/libxml/xmlIO.h
+	<stdio.h>
+	<libxml/xmlversion.h>
+	<libxml/globals.h>
+	<libxml/tree.h>
+	<libxml/parser.h>
+	<libxml/encoding.h>
 
