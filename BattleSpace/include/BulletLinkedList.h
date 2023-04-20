@@ -11,6 +11,7 @@ class BulletLinkedList
         virtual ~BulletLinkedList();
         void addFirst(Bullet *bullet);
         void removeFirst();
+        Bullet* removeFirstPTR();
         Bullet * removeBullet(Bullet * bulletToRemove);
         int size;
         bulletNode* head;

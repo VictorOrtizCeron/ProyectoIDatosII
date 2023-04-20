@@ -82,6 +82,18 @@ void Game:: initText(){
     this->text[3].setFillColor(sf::Color::White);
     this->text[3].setPosition(900, 650);
 
+    this->text[4].setFont(this->font);
+    this->text[4].setString("Collector Ammo: ");
+    this->text[4].setCharacterSize(20);
+    this->text[4].setFillColor(sf::Color::White);
+    this->text[4].setPosition(100, 680);
+
+
+    this->text[5].setFont(this->font);
+    this->text[5].setString("Gathering Ammo: ");
+    this->text[5].setCharacterSize(20);
+    this->text[5].setFillColor(sf::Color::White);
+    this->text[5].setPosition(500, 680);
 }
 void Game:: initFont(){
 
@@ -104,13 +116,13 @@ void Game:: initEnemyWaves(){
         for(int j =0; j<this->WaveEnemies ; j++){
 
             if(j%2 ==0){
-                Enemy* enemyPTR = new Enemy(1400,rand()%670,1);
+                Enemy* enemyPTR = new Enemy(1400,rand()%600,1);
                 enemyPTR->speedX = this->enemySpeedX;
                 Wave->addFirst(enemyPTR);
             }
             else{
 
-                Enemy* enemyPTR = new Enemy(1400,rand()%670,0);
+                Enemy* enemyPTR = new Enemy(1400,rand()%600,0);
                 enemyPTR->speedX = this->enemySpeedX;
                 Wave->addFirst(enemyPTR);
             }
@@ -190,7 +202,15 @@ Game::Game(int difficulty)
     this->initEnemyWaves();
     this->initTimers();
     this->serial_port= fopen("/dev/ttyUSB0","r");
+
+    if(serial_port == NULL){
+
+    }
     this->serial_port_write=fopen("/dev/ttyUSB0","w");
+
+    if(serial_port_write == NULL){
+
+    }
     this->CurrentPotVal= 0;
 }
 
@@ -257,11 +277,11 @@ void Game::updateInput()
     //fputc(ch, serial_port);
     //printf("%c %c %s \n", buffer[0],buffer[1],analogBuffer);
 
-    if(buffer[0]== '1'){
+    if(buffer[0]== '1'&& this->player->getBounds().top>0){
 
         this->player->move(0.f,-3.f);
     }
-    if(buffer[1]== '1'){
+    if(buffer[1]== '1'&& this->player->getBounds().top+100<720){
 
         this->player->move(0.f,3.f);
     }
@@ -307,8 +327,8 @@ void Game::updateInput()
             this->shootingCollector->removeFirst();
 
             //reinicia los parámetros de las balas reutilizadas.
-            bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x + this->player->getBounds().width/2.f,
-            this->player->getPos().y,
+            bulletPTR->resetParams(this->textures["Bullet"],this->player->getPos().x+20+ this->player->getBounds().width/2.f,
+            this->player->getPos().y+40,
             1.f,0.f,5.f);
 
             shotBullets->addFirst(bulletPTR);
@@ -364,6 +384,7 @@ void Game::updateEnemies()
 {
 
 
+
     this->nextWaveTimer += 0.5f;
 
     if(nextWaveTimer >= nextWaveTimerMax){
@@ -391,6 +412,11 @@ void Game::updateEnemies()
 
 
                 this->waveCounter++;
+                int data = 420;
+
+                fprintf(this->serial_port_write, "%d\n", data);
+                int waveToSevenSegment = this->waveCounter;
+
                 //std::cout<<this->waveCounter<<std::endl;
                 this->nextWaveTimer = 0.f;
 
@@ -461,7 +487,14 @@ void Game::updateLevel(){
         }
         this->initEnemyWaves();
         this->initMagazine(this->bullets);
-        //meter balas de gatheringCollector a shootingCollector
+        bulletNode * current = this->gatheringCollector->head;
+        bulletNode * next ;
+        while(current != nullptr){
+            next = current->nextBullet;
+            this->shootingCollector->addFirst(this->gatheringCollector->removeFirstPTR());
+            current = next;
+        }
+        //this->gatheringCollector->size=0;
     }
 }
 void Game::updateText(){
@@ -481,11 +514,15 @@ void Game::updateText(){
     this->text[2].setString(wave);
 
     this->text[3].setString("Level:" +std::to_string(this->Level));
+
+    this->text[4].setString("Collector Ammo:" +std::to_string(this->shootingCollector->size));
+
+    this->text[5].setString("Gathered Ammo:" +std::to_string(this->gatheringCollector->size));
 }
 
 void Game::renderText(){
 
-    for (int i = 0; i< 5; i++){
+    for (int i = 0; i< 6; i++){
         this->window->draw(text[i]);
     }
 

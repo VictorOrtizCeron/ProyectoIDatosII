@@ -10,7 +10,7 @@
 #include <cstring>
 #include <unistd.h>
 #include "enemyLinkedList.h"
-#define Max_inGame 5
+#define Max_inGame 6
 
 class Game
 {

@@ -43,6 +43,24 @@ void BulletLinkedList:: removeFirst(){
         size--;
     }
 }
+Bullet* BulletLinkedList:: removeFirstPTR(){
+
+    if(head == nullptr){
+        return nullptr;
+
+    }
+
+    else{
+
+        bulletNode * Temp = head;
+        Bullet* bulletPTR  = head->bullet;
+        head = head->nextBullet;
+        delete Temp;
+        size--;
+        return bulletPTR;
+
+    }
+}
 
 
 void BulletLinkedList:: printList(bulletNode *head){
