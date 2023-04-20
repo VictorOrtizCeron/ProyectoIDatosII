@@ -42,7 +42,11 @@ void Game::initMagazine(int i){
         }
     }
     else{
-        std::cout<<"entra al else de init Magazine"<<std::endl;
+
+        while(this->Magazine->size != 0){
+
+            this->Magazine->removeFirst();
+        }
         for(int j =0 ; j<i;j++){
 
             Magazine -> addFirst(new Bullet());
@@ -105,7 +109,6 @@ void Game:: initFont(){
     }
 
 }
-
 
 //creacion de oleadas enemigas
 void Game:: initEnemyWaves(){
