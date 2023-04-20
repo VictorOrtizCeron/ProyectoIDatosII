@@ -22,16 +22,16 @@ class Enemy
 
         sf::Texture enemyTexture;
 
-        int hp;
-        int hpMax;
-        int damage;
-        int points;
+        int hp;//no se utiliza
+        int hpMax;//no se utiliza
+        int damage;//no se utiliza
+        int points;//no se utiliza
         void initShape();
         void initVariables(int shipType);
         void initSprite();
         void initTexture(int shipType);
-        float spawnTimer;
-        float spawnTimerMax;
+        float spawnTimer;//temporizador de despliegue de naves enemigas
+        float spawnTimerMax;//maximo tiempo antes del despliegue
 
 };
 

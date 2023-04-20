@@ -4,7 +4,7 @@ enemyLinkedList::enemyLinkedList()
 {
     //ctor
 }
-
+//funcion que agrega puntero de nave enemiga a lista enlazada
 void enemyLinkedList::addFirst(Enemy* enemyPTR){
 
     enemyNode* newNode = new enemyNode(enemyPTR);
@@ -24,7 +24,7 @@ void enemyLinkedList::addFirst(Enemy* enemyPTR){
 
 
 }
-
+//funcion que elimina nodo específico de lista enlazada
 Enemy* enemyLinkedList::removeEnemy(Enemy* EnemyToRemove){
 
     enemyNode* current = this->head;
@@ -57,7 +57,7 @@ Enemy* enemyLinkedList::removeEnemy(Enemy* EnemyToRemove){
 
 }
 
-
+//funcion que borra primer nodo de lista enlazada
 Enemy* enemyLinkedList::removeFirst(){
 
     if(this->head == nullptr){
@@ -84,7 +84,7 @@ void enemyLinkedList::drawAllEnemies(sf::RenderTarget& target) {
             current = current->nextEnemy;
         }
     }
-
+//destructor de lista enlazada
 enemyLinkedList::~enemyLinkedList()
 {
     //dtor

@@ -6,7 +6,7 @@ BulletLinkedList::BulletLinkedList()
 
         size =0;
     }
-
+//funcion que agrega un elemento a la lista
 void BulletLinkedList::addFirst(Bullet *bullet){
 
         //printf("%x",bullet);
@@ -27,7 +27,7 @@ void BulletLinkedList::addFirst(Bullet *bullet){
         size++;
 
     }
-
+//funcion que borra el primer elemento de la lista
 void BulletLinkedList:: removeFirst(){
 
     if(head == nullptr){
@@ -43,6 +43,7 @@ void BulletLinkedList:: removeFirst(){
         size--;
     }
 }
+//funcion que retorna un puntero a la primera bala de la lista y la saca de dicha lista
 Bullet* BulletLinkedList:: removeFirstPTR(){
 
     if(head == nullptr){
@@ -61,8 +62,7 @@ Bullet* BulletLinkedList:: removeFirstPTR(){
 
     }
 }
-
-
+//funcion que imprime todos los punteros disponibles
 void BulletLinkedList:: printList(bulletNode *head){
     bulletNode *current = head;
     std::cout<<"Resultado PrintList: "<<std::endl;
@@ -72,7 +72,6 @@ void BulletLinkedList:: printList(bulletNode *head){
         current = current->nextBullet;
     }
 }
-
 //este metodo no borra el puntero, solo lo saca de shotBullets
 Bullet* BulletLinkedList:: removeBullet(Bullet* bulletToRemove){
 
@@ -103,7 +102,7 @@ Bullet* BulletLinkedList:: removeBullet(Bullet* bulletToRemove){
         current = current->nextBullet;
     }
 }
-
+//método de renderización de balas
 void BulletLinkedList::drawAll(sf::RenderTarget& target) {
         bulletNode* current = this->head;
         while (current != nullptr) {
@@ -112,7 +111,7 @@ void BulletLinkedList::drawAll(sf::RenderTarget& target) {
             current = current->nextBullet;
         }
     }
-
+//destructor
 BulletLinkedList::~BulletLinkedList()
     {
         //dtor

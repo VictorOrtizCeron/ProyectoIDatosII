@@ -40,8 +40,7 @@ MainMenu::~MainMenu()
 {
     //dtor
 }
-//Draw MainMenu
-
+//renderizador de menu
 void MainMenu:: draw(RenderWindow& window){
 
     for (int i = 0; i< Max_main_menu; i++){
@@ -50,7 +49,7 @@ void MainMenu:: draw(RenderWindow& window){
 
 }
 
-//MoveUp
+//Funcion para moverse arriba en la lista de menu
 
 void MainMenu::moveUp(){
 
@@ -69,7 +68,7 @@ void MainMenu::moveUp(){
 }
 
 
-//MoveDown
+//Funcion para moverse abajo en la lista de menu
 
 void MainMenu::moveDown(){
 

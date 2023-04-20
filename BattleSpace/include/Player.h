@@ -22,12 +22,12 @@ class Player
     protected:
 
     private:
-        sf::Sprite imagen;
+        sf::Sprite imagen;//figura de la nave
         //la variable textura se refiere al main ship del juego
-        sf::Texture textura;
+        sf::Texture textura;//imagen png de la nave
         float movementSpeed;
-        float attackCooldown;
-        float attackCooldownMax;
+        float attackCooldown;//temporizador de ataque
+        float attackCooldownMax;//maximo temporizador para atacar
         void initVariables();
         void initTexture();
         void initSprite();

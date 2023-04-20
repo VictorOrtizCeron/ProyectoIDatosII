@@ -11,7 +11,7 @@ class enemyLinkedList
         virtual ~enemyLinkedList();
         void addFirst(Enemy *enemyPTR);
         Enemy * removeEnemy(Enemy * EnemyToRemove);
-        int size;
+        int size;//tamaño de lista enlazada
         enemyNode* head;
         void drawAllEnemies(sf::RenderTarget& target);
         void printList(enemyNode * head);

@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-
+//funcion que inicializa las variables de una nave segun su tipo
 void Enemy::initVariables(int shipType)
 {
     if(shipType==0)
@@ -38,11 +38,12 @@ void Enemy::initTexture(int shipType){
 
     }
 }
-
+//inicializacion de sprite de enemigo
 void Enemy::initSprite()
 {
     this->enemySprite.setTexture(this->enemyTexture);
 }
+//constructor de nave enemiga con parámetros
 Enemy::Enemy(float pos_x, float pos_y, int shipType)
 {
     this->Type = shipType;
@@ -56,17 +57,17 @@ Enemy::~Enemy()
 {
     //dtor
 }
-
+//funcion que retorna los bordes de las naves enemigas
 const sf::FloatRect Enemy::getBounds() const{
 
     return this->enemySprite.getGlobalBounds();
 }
-
+//funcion de actualizacion de nave enemiga
 void Enemy::update()
 {
     this->enemySprite.move(speedX,speedY);
 }
-
+//renderizacion de naves enemigas
 void Enemy::render(sf::RenderTarget& target)
 {
     target.draw(this->enemySprite);

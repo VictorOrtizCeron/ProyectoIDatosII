@@ -4,6 +4,7 @@ bulletNode::bulletNode()
 {
 
 }
+//constructor de nodo de bala
 bulletNode::bulletNode(Bullet *bala)
 {
     this->bullet = bala;

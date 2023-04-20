@@ -1,32 +1,36 @@
 #include "Game.h"
 
-//private functions
+//funcion de inicio de ventana
 void Game::initWindow()
 {
     this-> window = new sf::RenderWindow(sf::VideoMode(1280, 720), "Ventana de Juego");
     this-> window ->setFramerateLimit(144);
     this-> window ->setVerticalSyncEnabled(false);
 }
+//funcion que carga texturas
 void Game::initTextures()
 {
     this->textures["Bullet"] = new sf::Texture();
     this->textures["Bullet"]->loadFromFile("misil2.png");
 
 }
+//inicializacion de jugador
 void Game::initPlayer()
 {
     this->player = new Player();
 
 }
-
+//inicializa recolector de balas
 void Game::initGatheringCollector()
 {
+//inicializa lista de balas recolectadas que se pueden disparar
     this->gatheringCollector = new BulletLinkedList();
 }
 void Game:: initShootingCollector(){
 
     this-> shootingCollector = new BulletLinkedList();
 }
+//inicializa lista de balas nuevas para disparar
 void Game::initMagazine(int i){
 
     if(this->Level==1){
@@ -48,53 +52,52 @@ void Game::initMagazine(int i){
     }
 
 }
-
-
-
+//inicializa lista de renderizacion de balas
 void Game::initshotBullets(){
 
         this-> shotBullets = new BulletLinkedList();
 }
-
+//incializa todo el text en pantalla
 void Game:: initText(){
 
     this->text[0].setFont(this->font);
     this->text[0].setString("Shooting Speed");
     this->text[0].setCharacterSize(20);
     this->text[0].setFillColor(sf::Color::White);
-    this->text[0].setPosition(100, 650);
+    this->text[0].setPosition(100, 630);
 
     this->text[1].setFont(this->font);
     this->text[1].setString("Ammunition:");
     this->text[1].setCharacterSize(20);
     this->text[1].setFillColor(sf::Color::White);
-    this->text[1].setPosition(500, 650);
+    this->text[1].setPosition(500, 630);
 
     this->text[2].setFont(this->font);
     this->text[2].setString("Wave: ");
     this->text[2].setCharacterSize(20);
     this->text[2].setFillColor(sf::Color::White);
-    this->text[2].setPosition(700, 650);
+    this->text[2].setPosition(700, 630);
 
     this->text[3].setFont(this->font);
     this->text[3].setString("Level: ");
     this->text[3].setCharacterSize(20);
     this->text[3].setFillColor(sf::Color::White);
-    this->text[3].setPosition(900, 650);
+    this->text[3].setPosition(900, 630);
 
     this->text[4].setFont(this->font);
     this->text[4].setString("Collector Ammo: ");
     this->text[4].setCharacterSize(20);
     this->text[4].setFillColor(sf::Color::White);
-    this->text[4].setPosition(100, 680);
+    this->text[4].setPosition(100, 660);
 
 
     this->text[5].setFont(this->font);
     this->text[5].setString("Gathering Ammo: ");
     this->text[5].setCharacterSize(20);
     this->text[5].setFillColor(sf::Color::White);
-    this->text[5].setPosition(500, 680);
+    this->text[5].setPosition(500, 660);
 }
+//inicializa la fuente de texto
 void Game:: initFont(){
 
     if (!font.loadFromFile("RobotoMono-VariableFont_wght.ttf")) {
@@ -104,7 +107,7 @@ void Game:: initFont(){
 }
 
 
-
+//creacion de oleadas enemigas
 void Game:: initEnemyWaves(){
     this->waveCounter = 0;
 
@@ -134,11 +137,12 @@ void Game:: initEnemyWaves(){
 
 }
 
-
+//creacion de lista de enemigos por renderizar
 void Game::initEnemyRenderList(){
     this-> EnemyRenderList = new enemyLinkedList();
 
 }
+//creacion de temporizadores
 void Game::initTimers(){
 
     this->spawnTimerMax = 100.f;
@@ -148,7 +152,7 @@ void Game::initTimers(){
     this->waitNextWave = true;
 
 }
-
+//constructor de juego sin dificultad
 Game::Game()
 {
     this->initWindow();
@@ -167,6 +171,7 @@ Game::Game()
     this->initEnemyWaves();
     this->initTimers();
 }
+//constructor de juego con dificultad
 Game::Game(int difficulty)
 {
     this->initWindow();
@@ -223,7 +228,7 @@ Game::Game(int difficulty)
 
     }
 }
-
+//destructor de juego
 Game::~Game()
 {
     delete this->window;
@@ -240,7 +245,7 @@ Game::~Game()
 }
 
 //functions
-
+//loop principal de juego
 void Game::run()
 {
 
@@ -252,6 +257,7 @@ void Game::run()
     }
 
 }
+//actualizacion de eventos
 void Game::updatePollEvents()
 {
     //permite cerrar la ventana del juego usando la tecla escape
@@ -264,7 +270,7 @@ void Game::updatePollEvents()
             this->window->close();
     }
 }
-
+//funcion para imprimir todos los elementos del archivo xml
 void Game::print_element_names(xmlNode * a_node)
 {
     xmlNode *cur_node = nullptr;
@@ -279,16 +285,14 @@ void Game::print_element_names(xmlNode * a_node)
 
     }
  }
+//funcion que actualiza los inputs del jugador
 void Game::updateInput()
 {
-     //movimiento del main ship
 
+    //buffers de la lectura serial
+    char buffer[256];//botones
 
-    //corre lento pero corre
-
-    char buffer[256];
-
-    char analogBuffer[256];
+    char analogBuffer[256];//potenciometro
 
     fscanf(serial_port, "%s",&buffer);
     fscanf(serial_port, "%s", &analogBuffer);
@@ -298,7 +302,7 @@ void Game::updateInput()
 
 
 
-
+    //validacion de los botones para movimiento de la nave con arduino
     if(buffer[0]== '1'&& this->player->getBounds().top>0){
 
         this->player->move(0.f,-3.f);
@@ -307,14 +311,13 @@ void Game::updateInput()
 
         this->player->move(0.f,3.f);
     }
-
-
-
+    //validacion de los botones para movimiento de la nave con teclado
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)&& this->player->getBounds().top>0)
         this->player->move(0.f,-3.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)&& this->player->getBounds().top+100<720)
         this->player->move(0.f,3.f);
 
+    //impresión del XML con tecla F
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::F))
 
         this->root_element = xmlDocGetRootElement(this->doc);
@@ -324,7 +327,7 @@ void Game::updateInput()
 
 
 
-    //Control de velocidad de disparo
+    //Control de velocidad de disparo con potenciómetro
     //velocidad de disparo por default 10.f
 
     int potVal = std::atoi(analogBuffer);
@@ -337,7 +340,7 @@ void Game::updateInput()
         this->player->SlowAttackCooldownMax(-1.f);
         this->CurrentPotVal = potVal;
     }
-
+    //control de velocidad de disparo con teclado
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::K))
         this->player->SlowAttackCooldownMax(0.5f);
 
@@ -345,12 +348,12 @@ void Game::updateInput()
         this->player->SlowAttackCooldownMax(-0.5f);
 
 
-    //thread
-    //en este codigo hace que se disparen las balas hay que pasarlo a que sea automatico
+
+    //disparo de balas automático
     if(this->player->canAttack()){
 
 
-        //Condicional que evalúa si se va a utilizar una bala de bullet collector
+        //Condicional que evalúa si se va a utilizar una bala de shooting collector collector
         if(shootingCollector-> size > 0){
 
             Bullet* bulletPTR = shootingCollector->head->bullet;
@@ -367,7 +370,7 @@ void Game::updateInput()
         else{
             if (Magazine->size==0){
 
-                //std::cout<<"no ammo"<<std::endl;
+                //no hay ammo para disparar
 
             }
             else{
@@ -386,35 +389,37 @@ void Game::updateInput()
 
     }
 }
-
+//funcion que actualiza las balas disparadas
 void Game::updateBullets(){
 
     bulletNode *current = this->shotBullets->head;
     if(current != nullptr){
         while (current != nullptr) {
 
-            // Move the projectile sprite
+            //  Mueve la bala
 
             current->bullet->update();
 
-            // Check if projectile is offscreen and remove it if it is
+            // validacion de si la bala sale de la pantalla
             if (current->bullet->getBounds().left > 1300) {
+
+                //agregacion a gatheringCollector
 
                 Bullet* bulletPTR = shotBullets->removeBullet(current->bullet);
                 gatheringCollector->addFirst(bulletPTR);
-                //std::cout<<gatheringCollector->size<<std::endl;
+
             }
 
             current = current->nextBullet;
         }
     }
 }
-
+//funcion de actualizacion de enemigos
 void Game::updateEnemies()
 {
 
 
-
+    //condicionales de espera para siguiente ronda
     this->nextWaveTimer += 0.5f;
 
     if(nextWaveTimer >= nextWaveTimerMax){
@@ -438,6 +443,7 @@ void Game::updateEnemies()
     if(waitNextWave == false){
         if(this->spawnTimer >=this->spawnTimerMax)
         {
+            //cambio de oleada y envio de informacion a arduino
             if(this->EnemyWaves[this->waveCounter]->head == nullptr){
 
 
@@ -447,12 +453,12 @@ void Game::updateEnemies()
                 fprintf(this->serial_port_write, "%d\n", data);
 
 
-                //std::cout<<this->waveCounter<<std::endl;
+
                 this->nextWaveTimer = 0.f;
 
 
             }
-
+            //despliegue regular de enemigo
             else{
 
                 EnemyRenderList->addFirst(EnemyWaves[this->waveCounter]->removeFirst());
@@ -462,6 +468,7 @@ void Game::updateEnemies()
         }
 
     }
+    //actualizacion de todos los enemigos
     while(current != nullptr)
         {
             current->enemy->update();
@@ -469,7 +476,7 @@ void Game::updateEnemies()
 
                 current->enemy->speedY = current->enemy->speedY *-1.f;
             }
-
+            //validación de rebasamiento de posición de jugador
             if(current->enemy->getBounds().left+100<0){
 
                 int data = 69;
@@ -479,10 +486,10 @@ void Game::updateEnemies()
                 Enemy* enemyPTR = this->EnemyRenderList->removeEnemy(current->enemy);
                 delete(enemyPTR);
             }
-
+            //validacion de colisiones con balas para todos los enemigos
             while(currentBullet!=nullptr){
 
-                //Deteccion de colisiones, requiere mejoras con el png
+
                 if(current->enemy->getBounds().intersects(currentBullet->bullet->getBounds())){
 
                     Bullet *bulletPTR = shotBullets->removeBullet(currentBullet->bullet);
@@ -502,6 +509,7 @@ void Game::updateEnemies()
         }
 
 }
+//funcion de cambio de nivel
 void Game::updateLevel(){
 
 
@@ -527,6 +535,7 @@ void Game::updateLevel(){
 
     }
 }
+//funcion de actualizacion de texto
 void Game::updateText(){
 
     std::string shootingSpeed = "Shooting Speed: " + std::to_string(this->player->getCooldown());
@@ -549,7 +558,7 @@ void Game::updateText(){
 
     this->text[5].setString("Gathered Ammo:" +std::to_string(this->gatheringCollector->size));
 }
-
+//funcion de renderizacion de texto
 void Game::renderText(){
 
     for (int i = 0; i< 6; i++){
@@ -557,6 +566,7 @@ void Game::renderText(){
     }
 
 }
+//funcion de actualizacion de juego global
 void Game::update()
 {
     this->updatePollEvents();
@@ -569,6 +579,7 @@ void Game::update()
     this->updateEnemies();
 
 }
+//funcion de renderización de juego global
 void Game::render()
 {
     this->window->clear();

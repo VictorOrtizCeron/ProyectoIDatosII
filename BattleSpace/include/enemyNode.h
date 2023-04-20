@@ -8,8 +8,8 @@ class enemyNode
         enemyNode();
         enemyNode(Enemy* enemyPTR);
         virtual ~enemyNode();
-        enemyNode* nextEnemy;
-        Enemy* enemy;
+        enemyNode* nextEnemy;//punto al siguiente nodo de la lista
+        Enemy* enemy;//puntero al objeto Enemy almacenado
 
     protected:
 

@@ -37,7 +37,7 @@ class Game
         sf::RenderWindow* window;
         sf::Text text[Max_inGame];
         sf::Font font;
-        int waveCounter;
+        int waveCounter;//contador de oleada
         Enemy* enemy;
         int Level;
         int WaveEnemies;
@@ -55,9 +55,9 @@ class Game
         float nextWaveTimerMax;
         bool waitNextWave;
         enemyLinkedList* EnemyRenderList;
-        enemyLinkedList* EnemyGatherer;
+
         std::string powerup;
-        enemyLinkedList* EnemyWaves[5];
+        enemyLinkedList* EnemyWaves[5];//arreglo de listas enlazadas para enemigos
         std::map <std::string, sf::Texture*>textures;
         void print_element_names(xmlNode * a_node);
         void initWindow();
@@ -74,9 +74,9 @@ class Game
         void initEnemyRenderList();
         void initEnemyGatherer();
         void initEnemyWaves();
-        FILE* serial_port;
-        FILE* serial_port_write;
-        xmlDoc* doc;
+        FILE* serial_port;//puerto serial para lectura
+        FILE* serial_port_write;//puerto serial para escritura
+        xmlDoc* doc;//documento xml
         xmlNode* root_element;
 };
 

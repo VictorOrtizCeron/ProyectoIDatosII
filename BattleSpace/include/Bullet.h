@@ -22,8 +22,8 @@ class Bullet
 
     private:
 
-      sf::Vector2f direction;
-      float movementSpeed;
+      sf::Vector2f direction;//no se utiliza
+      float movementSpeed;//velocidad de movimiento
 };
 
 #endif // BULLET_H

@@ -13,7 +13,7 @@ class BulletLinkedList
         void removeFirst();
         Bullet* removeFirstPTR();
         Bullet * removeBullet(Bullet * bulletToRemove);
-        int size;
+        int size;//tamaño de lista enlazada
         bulletNode* head;
         void drawAll(sf::RenderTarget& target);
         void printList(bulletNode * head);

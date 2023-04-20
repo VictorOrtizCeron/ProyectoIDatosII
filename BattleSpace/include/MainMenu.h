@@ -5,7 +5,7 @@
 
 using namespace std;
 using namespace sf;
-//Header file con declaraciones de las funcionalidades de la clase MainMenu
+
 
 #define Max_main_menu 4
 class MainMenu
@@ -24,8 +24,8 @@ class MainMenu
 
     private:
         int MainMenuSelected;
-        Font font;
-        Text mainMenu[Max_main_menu];
+        Font font;//fuente
+        Text mainMenu[Max_main_menu];//arreglo de opciones del menu
 
 };
 
