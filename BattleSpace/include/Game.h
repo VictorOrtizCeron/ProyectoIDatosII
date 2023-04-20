@@ -73,7 +73,7 @@ class Game
         void initEnemyGatherer();
         void initEnemyWaves();
         FILE* serial_port;
-
+        FILE* serial_port_write;
 
 };
 

@@ -189,7 +189,8 @@ Game::Game(int difficulty)
     this->initEnemyRenderList();
     this->initEnemyWaves();
     this->initTimers();
-    this->serial_port= fopen("/dev/ttyUSB0","r+");
+    this->serial_port= fopen("/dev/ttyUSB0","r");
+    this->serial_port_write=fopen("/dev/ttyUSB0","w");
     this->CurrentPotVal= 0;
 }
 
@@ -251,6 +252,9 @@ void Game::updateInput()
     memmove(analogBuffer,analogBuffer+2,len-1);
     analogBuffer[len-2]= '\0';
 
+
+    //char ch = 'a';
+    //fputc(ch, serial_port);
     //printf("%c %c %s \n", buffer[0],buffer[1],analogBuffer);
 
     if(buffer[0]== '1'){
@@ -409,7 +413,12 @@ void Game::updateEnemies()
 
                 current->enemy->speedY = current->enemy->speedY *-1.f;
             }
+
             if(current->enemy->getBounds().left+100<0){
+
+                int data = 69;
+
+                fprintf(this->serial_port_write, "%d\n", data);
 
                 Enemy* enemyPTR = this->EnemyRenderList->removeEnemy(current->enemy);
                 delete(enemyPTR);
